@@ -1,0 +1,716 @@
+{% extends "builder/layout.html" %}
+
+{% load crispy_forms_tags %}
+{% load humanize %} {% load mathfilters %}
+
+{% block body %}
+
+{% csrf_token %}
+<div class="container mb-4">
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col w-100 alert alert-info" role="alert">
+            <h4 class="px-4">Here's some more information on the computer you've chosen.</h4>
+        </div>
+    </div>
+
+<!--    SCORE-->
+    <div class="row align-items-center justify-content-evenly py-3 mb-5 rounded-3 shadow" style="background-color:#bbdefb;">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">PC BENCHMARK</h5>
+        </div>
+        <div class="col-lg-auto col-12">
+            <p class="fw-bold mb-0 text-center text-lg-start">Desktop</p>
+            <p class="fs-4 fw-bold text-theme text-center text-lg-start">{{picked_pc.9.0.desktop|floatformat:2}}</p>
+        </div>
+        <div class="col-lg-auto col-12">
+            <p class="fw-bold mb-0 text-center text-lg-start">Gaming</p>
+            <p class="fs-4 fw-bold text-theme text-center text-lg-start">{{picked_pc.9.0.gaming|floatformat:2}}</p>
+        </div>
+        <div class="col-lg-auto col-12">
+            <p class="fw-bold mb-0 text-center text-lg-start">Workstation</p>
+            <p class="fs-4 fw-bold text-theme text-center text-lg-start">{{picked_pc.9.0.workstation|floatformat:2}}</p>
+        </div>
+    </div>
+
+<!--    CPU-->
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">CPU</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{picked_pc.0.1.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{picked_pc.0.1.name1}}</p>
+                    <div class="container-fluid collapse" id="cpu">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Brand</th>
+                                    <td class="col-6">{{picked_pc.0.1.brand}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Benchmark</th>
+                                    <td>{{picked_pc.0.1.bench}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Processor number</th>
+                                    <td>{{picked_pc.0.1.processor_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Max memory size</th>
+                                    <td>{{picked_pc.0.1.max_memory_sizer }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Memory type</th>
+                                    <td>{{picked_pc.0.1.memory_type }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Socket supported</th>
+                                    <td>{{picked_pc.0.1.socket_supported }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">User rating</th>
+                                    <td>{{picked_pc.0.1.user_rating }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value</th>
+                                    <td>{{picked_pc.0.1.value }}</td>
+                                </tr>
+                                {% if picked_pc.0.1.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{picked_pc.0.1.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if picked_pc.0.1.link1.manufacturer %}
+                                        <a href="{{picked_pc.0.1.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if picked_pc.0.1.link1.gearvn %}
+                                        <a href="{{picked_pc.0.1.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if picked_pc.0.1.link1.phongvu %}
+                                        <a href="{{picked_pc.0.1.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <p class="fw-bold fs-5 text-theme mb-0 text-end">₫{{picked_pc.0.1.price|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#cpu" aria-expanded="false" aria-controls="cpu">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<!--    MAINBOARD-->
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">MAINBOARD</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{picked_pc.1.1.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{picked_pc.1.1.name}}</p>
+                    <div class="container-fluid collapse" id="board">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Socket</th>
+                                    <td class="col-6">{{picked_pc.1.1.socket}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Chipset</th>
+                                    <td>{{picked_pc.1.1.chipset}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Memory slot</th>
+                                    <td>{{picked_pc.1.1.ram_slot}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Memory type</th>
+                                    <td>{{picked_pc.1.1.memory_type}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Max memory size</th>
+                                    <td>{{picked_pc.1.1.max_memory_size}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Form factor</th>
+                                    <td>{{picked_pc.1.1.form_factor}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ram bus</th>
+                                    <td>{{picked_pc.1.1.ram_bus}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Storage type</th>
+                                    <td>{{picked_pc.1.1.storage_type}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">M2 supported</th>
+                                    <td>{{picked_pc.1.1.supported_m2}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Output</th>
+                                    <td>{{picked_pc.1.1.out_put}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">PCI</th>
+                                    <td>{{picked_pc.1.1.pci}}</td>
+                                </tr>
+                                {% if picked_pc.1.1.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{picked_pc.1.1.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if picked_pc.1.1.link1.manufacturer %}
+                                        <a href="{{picked_pc.1.1.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if picked_pc.1.1.link1.gearvn %}
+                                        <a href="{{picked_pc.1.1.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if picked_pc.1.1.link1.phongvu %}
+                                        <a href="{{picked_pc.1.1.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <p class="fw-bold fs-5 text-theme mb-0 text-end">₫{{picked_pc.1.1.price|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#board" aria-expanded="false" aria-controls="board">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    GPU-->
+    {% if picked_pc.2.1 %}
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">GPU</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{picked_pc.2.1.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{picked_pc.2.1.brand}} {{picked_pc.2.1.name}}</p>
+                    <div class="container-fluid collapse" id="gpu"><table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Brand</th>
+                                    <td class="col-6">{{picked_pc.2.1.brand}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Benchmark</th>
+                                    <td>{{picked_pc.2.1.bench}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">User rating</th>
+                                    <td>{{picked_pc.2.1.user_rating}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value</th>
+                                    <td>{{picked_pc.2.1.value}}</td>
+                                </tr>
+                                {% if picked_pc.2.1.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{picked_pc.2.1.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if picked_pc.2.1.link1.manufacturer %}
+                                        <a href="{{picked_pc.2.1.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if picked_pc.2.1.link1.gearvn %}
+                                        <a href="{{picked_pc.2.1.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if picked_pc.2.1.link1.phongvu %}
+                                        <a href="{{picked_pc.2.1.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <p class="fw-bold fs-5 text-theme mb-0 text-end">₫{{picked_pc.2.1.price|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#gpu" aria-expanded="false" aria-controls="gpu">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+<!--    RAM-->
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">RAM</h5>
+        </div>
+
+        <div class="col-lg-10 col-12">
+            {% for item in picked_pc.3.1 %}
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{item.item.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{item.item.brand}} {{item.item.name}}</p>
+                    <div class="container-fluid collapse" id="ram{{forloop.counter}}"><table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Brand</th>
+                                    <td class="col-6">{{item.item.brand}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Benchmark</th>
+                                    <td>{{item.item.bench}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Memory type</th>
+                                    <td>{{item.item.memory_type }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ram bus</th>
+                                    <td>{{item.item.ram_bus }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ram CAS</th>
+                                    <td>{{item.item.ram_cas }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Quantity</th>
+                                    <td>{{item.item.quantity}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Size</th>
+                                    <td>{{item.item.size}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">User rating</th>
+                                    <td>{{item.item.user_rating}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value</th>
+                                    <td>{{item.item.value}}</td>
+                                </tr>
+                                {% if item.item.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{item.item.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if item.item.link1.manufacturer %}
+                                        <a href="{{item.item.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if item.item.link1.gearvn %}
+                                        <a href="{{item.item.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if item.item.link1.phongvu %}
+                                        <a href="{{item.item.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <div class="row">
+                        <p class="fw-bold text-theme mb-0 text-center text-lg-end">₫{{item.item.price|floatformat:"0g"}}</p>
+                        <p class="fw-bold mb-0 text-center text-lg-end"><i class="fas fa-times"></i> {{item.quantity}}</p>
+                        <p class="fw-bold fs-5 text-theme mb-0 text-center text-lg-end">₫{{item.quantity|mul:item.item.price|floatformat:"0g"}}</p>
+                    </div>
+
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#ram{{forloop.counter}}" aria-expanded="false" aria-controls="ram{{forloop.counter}}">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+<!--    SSD-->
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">SSD</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            {% for item in picked_pc.4.1 %}
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{item.item.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{item.item.brand}} {{item.item.name}}</p>
+                    <div class="container-fluid collapse" id="ssd{{forloop.counter}}"><table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Brand</th>
+                                    <td class="col-6">{{item.item.brand}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Benchmark</th>
+                                    <td>{{item.item.bench}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">User rating</th>
+                                    <td>{{item.item.user_rating}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value</th>
+                                    <td>{{item.item.value}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Capacity</th>
+                                    <td>{{item.item.capacity}} {{item.item.unit}}</td>
+                                </tr>
+                                {% if item.item.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{item.item.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if item.item.link1.manufacturer %}
+                                        <a href="{{item.item.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if item.item.link1.gearvn %}
+                                        <a href="{{item.item.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if item.item.link1.phongvu %}
+                                        <a href="{{item.item.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <div class="row">
+                        <p class="fw-bold text-theme mb-0 text-center text-lg-end">₫{{item.item.price|floatformat:"0g"}}</p>
+                        <p class="fw-bold mb-0 text-center text-lg-end"><i class="fas fa-times"></i> {{item.quantity}}</p>
+                        <p class="fw-bold fs-5 text-theme mb-0 text-center text-lg-end">₫{{item.quantity|mul:item.item.price|floatformat:"0g"}}</p>
+                    </div>
+
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#ssd{{forloop.counter}}" aria-expanded="false" aria-controls="ram{{forloop.counter}}">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+<!--    HDD-->
+    {% if picked_pc.5.1 %}
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">HDD</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            {% for item in picked_pc.5.1 %}
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{item.item.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{item.item.brand}} {{item.item.name}}</p>
+                    <div class="container-fluid collapse" id="hdd{{forloop.counter}}"><table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Brand</th>
+                                    <td class="col-6">{{item.item.brand}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Benchmark</th>
+                                    <td>{{item.item.bench}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">User rating</th>
+                                    <td>{{item.item.user_rating}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value</th>
+                                    <td>{{item.item.value}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Capacity</th>
+                                    <td>{{item.item.capacity}} {{item.item.unit}}</td>
+                                </tr>
+                                {% if item.item.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{item.item.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if item.item.link1.manufacturer %}
+                                        <a href="{{item.item.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if item.item.link1.gearvn %}
+                                        <a href="{{item.item.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if item.item.link1.phongvu %}
+                                        <a href="{{item.item.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <div class="row">
+                        <p class="fw-bold text-theme mb-0 text-center text-lg-end">₫{{item.item.price|floatformat:"0g"}}</p>
+                        <p class="fw-bold mb-0 text-center text-lg-end"><i class="fas fa-times"></i> {{item.quantity}}</p>
+                        <p class="fw-bold fs-5 text-theme mb-0 text-center text-lg-end">₫{{item.quantity|mul:item.item.price|floatformat:"0g"}}</p>
+                    </div>
+
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#hdd{{forloop.counter}}" aria-expanded="false" aria-controls="ram{{forloop.counter}}">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endif %}
+<!--    PSU-->
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">PSU</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{picked_pc.6.1.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{picked_pc.6.1.brand}} {{picked_pc.6.1.name}}</p>
+                    <div class="container-fluid collapse" id="psu">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-6">Efficient rating</th>
+                                    <td class="col-6">
+                                        {% for k, v in picked_pc.6.1.items %}
+                                        {% if k == "efficient rating" %}
+                                        {{v}}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Wattage</th>
+                                    <td>{{picked_pc.6.1.wattage}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Protection</th>
+                                    <td>{{picked_pc.6.1.protection}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Modularity</th>
+                                    <td>{{picked_pc.6.1.modularity}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Form factor</th>
+                                    <td>
+                                        {% for k, v in picked_pc.6.1.items %}
+                                        {% if k == "form factor" %}
+                                        {{v}}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {% if picked_pc.6.1.link %}
+                                <tr>
+                                    <th scope="row">Link</th>
+                                    <td>
+                                        <a href="{{picked_pc.6.1.link }}" class="text-decoration-none text-theme link" target="_blank">
+                                        UserBenchmark</a>
+                                        {% if picked_pc.6.1.link1.manufacturer %}
+                                        <a href="{{picked_pc.6.1.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , Manufacturer</a>
+                                        {% endif %}
+                                        {% if picked_pc.6.1.link1.gearvn %}
+                                        <a href="{{picked_pc.6.1.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , GearVN</a>
+                                        {% endif %}
+                                        {% if picked_pc.6.1.link1.phongvu %}
+                                        <a href="{{picked_pc.6.1.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">
+                                        , PhongVu</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <p class="fw-bold fs-5 text-theme mb-0 text-end">₫{{picked_pc.6.1.price|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#psu" aria-expanded="false" aria-controls="gpu">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    CASE-->
+    {% if picked_pc.7.1 %}
+    <div class="row align-items-center justify-content-between py-3 rounded-3 hover-shadow mb-3">
+        <div class="col-lg-2 col-12">
+            <h5 class="fw-bold text-center">CASE</h5>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class="row">
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{picked_pc.7.1.img}}"
+                         alt="" class="img-fluid img-detail" >
+                </div>
+                <div class="col-lg-7 col-12">
+                    <p class="fw-bold fs-5 text-center text-lg-start">{{picked_pc.7.1.name}}</p>
+                    <div class="container-fluid collapse" id="case">
+                        <table class="table">
+                            <tbody>
+                            {% if picked_pc.7.1.case_type %}
+                            <tr>
+                                <th scope="row" class="col-6">Case type</th>
+                                <td class="col-6">{{picked_pc.7.1.case_type}}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th scope="row" class="col-6">Board supported</th>
+                                <td class="col-6">{{picked_pc.7.1.board_supported}}</td>
+                            </tr>
+                            {% if picked_pc.7.1.link %}
+                            <tr>
+                                <th scope="row">Link</th>
+                                <td>
+                                    <a href="{{picked_pc.7.1.link }}" class="text-decoration-none text-theme link" target="_blank">UserBenchmark</a>
+                                    {% if picked_pc.7.1.link1.manufacturer %}
+                                    <a href="{{picked_pc.7.1.link1.manufacturer }}" class="text-decoration-none text-theme link" target="_blank">, Manufacturer</a>
+                                    {% endif %}
+                                    {% if picked_pc.7.1.link1.gearvn %}
+                                    <a href="{{picked_pc.7.1.link1.gearvn }}" class="text-decoration-none text-theme link" target="_blank">, GearVN</a>
+                                    {% endif %}
+                                    {% if picked_pc.7.1.link1.phongvu %}
+                                    <a href="{{picked_pc.7.1.link1.phongvu }}" class="text-decoration-none text-theme link" target="_blank">, PhongVu</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <p class="fw-bold fs-5 text-theme mb-0 text-end">₫{{picked_pc.7.1.price|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 d-flex justify-content-center align-items-center">
+                    <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#case" aria-expanded="false" aria-controls="gpu">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row align-items-center justify-content-center py-3">
+        <p class="text-center fw-bold">
+            Total: <span class="fs-3 text-theme"> ₫{{picked_pc.8.1|floatformat:"0g"}} </span>
+        </p>
+    </div>
+    <div class="row align-items-center justify-content-center py-3">
+        <a class="btn w-auto btn-grad-success" href="{% url 'build:pc_to_pdf' %}">EXPORT AS PDF</a>
+    </div>
+
+</div>
+
+<script>
+    $('.link').click(function() {
+        fetch('http://127.0.0.1:8000/demo/click/', {
+            method: "POST",
+            body: JSON.stringify( {'index': "1"} ),
+            headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+            mode: 'same-origin',
+        })
+        .then(re => re.json())
+        .then(data => {
+            JSON.stringify(data);
+            console.log(data);
+        });
+    });
+</script>
+{% endblock %}

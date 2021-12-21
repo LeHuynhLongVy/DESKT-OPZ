@@ -1,0 +1,208 @@
+.asteriskField {
+    display: none;
+}
+body {
+    font-family: sans-serif;
+}
+/*Background*/
+.bg-builder {
+    background-image: url("bg1-fixed.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-opacity: 0.5;
+    height: 1200px;
+}
+
+.bg-gradient2{
+background-color: #21D4FD;
+background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+
+}
+
+.o-size {
+    width: 100px;
+    height: 100px;
+}
+.bg-item {
+    background-color: #2b2e35;
+}
+
+.bg-detail {
+    background-color: #e1e1e3;
+}
+
+.bg-welcome {
+    background-image: url("bg-welcome-blured.jpg");
+}
+/*Tables*/
+th.product-table-header:hover {
+    background-color: #dee2e6;
+}
+
+table.sortable tbody {
+    counter-reset: sortabletablescope;
+}
+table.sortable thead tr::before {
+    content: "";
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+table.sortable tbody tr::before {
+    content: counter(sortabletablescope);
+    counter-increment: sortabletablescope;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+tr::before{
+    border-bottom: 0.1px solid;
+    border-color: inherit;
+}
+tr::before:first-child{
+    border-bottom: 1px solid black;
+}
+td {
+    vertical-align: middle;
+}
+/*Navbar*/
+#navbar {
+    background-color: #1766b5;
+}
+.text-theme {
+    color: #1766b5;
+}
+
+#jumpotron-welcome {
+    background-image: url("cover2_2.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 800px;
+}
+/*Buttons*/
+.btn-grad-info {background-image: linear-gradient(to right, #1766b5 0%, #363795  51%, #1766b5  100%)}
+.btn-grad-info {
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+    border-radius: 100px;
+    height: 40px;
+}
+
+.btn-grad-info:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.btn-grad-remove {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+.btn-grad-remove {
+    padding: 0 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+    border-radius: 100px;
+    display: block;
+    height: 40px;
+}
+.btn-grad-remove:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.btn-grad-secondary {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+.btn-grad-secondary {
+    padding: 0 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+    border-radius: 100px;
+    display: block;
+    height: 40px;
+}
+.btn-grad-secondary:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.btn-grad-success {background-image: linear-gradient(to right, #23a107 0%, #b8f43f 51%, #23a107  100%)}
+.btn-grad-success {
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+    border-radius: 50px;
+    height: 40px;
+}
+.btn-grad-success:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+/* used in pc_auto_sets */
+.info-border {
+    border-style: solid;
+    border-color: #42a5f5;
+    border-width: medium;
+    border-radius: 15px;
+}
+
+#auto-brief {
+    background-image: url("auto_2.jpg");
+    background-size: cover;
+}
+#manual-brief {
+    background-image: url("manual_2.jpg");
+    background-size: cover;
+}
+
+/* used in pc_detail */
+.hover-shadow {
+    box-shadow: 0 .3rem 1rem rgba(0,0,0,.15)
+}
+.hover-shadow:hover {
+    box-shadow: 0 .3rem 1rem #1766b5;
+}
+
+#notfound-body {
+    background-image: url("notfound.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-detail {
+    height: 144px;
+    width: 144px;
+}
+/* Product */
+.product-img {
+    width:50px;
+    height:50px;
+}
+
+/* used in pc_builder_sets */
+.img-builder-sets{
+    height: 100px;
+    width: 100px;
+}

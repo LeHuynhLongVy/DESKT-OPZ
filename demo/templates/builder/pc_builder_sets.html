@@ -1,0 +1,637 @@
+{% extends "builder/layout.html" %} {% load humanize %} {% load mathfilters %} {% block body %}
+
+<div class="container-fluid px-0" id="">
+    <div class="container" >
+        <div class="row justify-content-center align-items-center">
+            {% if stat == 1 %}
+            <div class="col w-100 alert alert-danger" role="alert">
+                <p class="fs-3">Hmmm...</p>
+                <p> We were unable to found anything that met your requirements. <br>
+                    Try different search criteria or check out some of our top trending combinations.</p>
+            </div>
+            {% else %}
+            <div class="col w-100 alert alert-success" role="alert">
+                <p class="fs-3">Yay!</p>
+                <p>We came up with <span class="fw-bold">{{res|length}}</span> new combos for you.</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row justify-content-center align-items-center info-border shadow mb-3">
+            <div class="col-12">
+                <p class="text-center mb-0 py-2" data-bs-toggle="collapse" data-bs-target="#requiremnet">To see what you chose previously, go here <i class="fas fa-chevron-down"></i></p>
+            </div>
+            <div class="col-12 collapse" id="requiremnet" data-bs-toggle="collapse" data-bs-target="#requiremnet">
+                <div class="container-fluid px-lg-5">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-5 text-lg-end col-6">
+                            <label for="" class="form-label fw-bold">Purpose</label>
+                            <p class="text-capitalize">{{requirement.purpose}}</p>
+                        </div>
+                        <div class="col-lg-5 col-6">
+                            <label for="" class="form-label fw-bold">Budget</label>
+                            <p class="">₫{{ requirement.budget1|floatformat:"0g" }}
+                                {% if requirement.budget2 %}
+                                - ₫{{requirement.budget2}}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 text-lg-end col-6">
+                            <label for="" class="form-label fw-bold">Overclock</label>
+                            <p class="text-capitalize">
+                                {% if requirement.overclock is True %}
+                                Yes
+                                {% elif requirement.overclock is False %}
+                                No
+                                {% else %}
+                                Any
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-6">
+                            <label for="" class="form-label fw-bold">Form factor</label>
+                            <p class="text-capitalize">
+                                {% if requirement.form_factor is True %}
+                                Yes
+                                {% elif requirement.form_factor is False %}
+                                No
+                                {% else %}
+                                Any
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 text-lg-end col-6">
+                            <label for="" class="form-label fw-bold">RAM - Amount</label>
+                            <p class="text-capitalize">
+                                {% if requirement.ram is True %}
+                                Kit -
+                                {% elif requirement.form_factor is False %}
+                                Single -
+                                {% else %}
+                                Any -
+                                {% endif %}
+                                {% if requirement.ram_amount %}
+                                {{ requirement.ram_amount }}
+                                {% else %}
+                                Any
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-6">
+                            <label for="" class="form-label fw-bold">PSU</label>
+                            <p class="text-capitalize">
+                                {% if requirement.psu %}
+                                {{ requirement.psu }}
+                                {% else %}
+                                Any
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 text-lg-end col-6">
+                            <label for="" class="form-label fw-bold">SSD - HDD</label>
+                            <p class="text_capitalize">
+                                {% if requirement.storage_ssd %}
+                                {{ requirement.storage_ssd | upper}} -
+                                {% else %}
+                                    Any -
+                                {% endif %}
+                                {% if requirement.storage_hdd %}
+                                {{ requirement.storage_hdd | upper}}
+                                {% else %}
+                                Any
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-6">
+                            <label for="" class="form-label fw-bold">CPU Brand</label>
+                            {% if requirement.cpu_brand %}
+                            <p class="text-capitalize">{{ requirement.cpu_brand }}</p>
+                            {% else %}
+                            <p>Any</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    {% for eachpc in page_obj %}
+    <div class="row mb-3 bg-light border rounded-3 border-dark border-3">
+        <div class="col-lg-2 col-12 text-center fs-2 fw-bold border-end border-dark border-3">
+            <div class="container-fluid h-100">
+                <div class="row h-100 align-items-center py-lg-0 py-2">
+                    <p class="text-center"><i class="fas fa-desktop"></i> {{page_obj.number|sub:"1"|mul:"10"|add:forloop.counter}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-12">
+            <div class=" row justify-content-lg-around align-items-center py-2 ">
+                <div class="col-lg-auto col-8">
+                    <p class="mb-0 fw-bold">Average benchmark:</p>
+                    <p class="mb-0 fw-bold fs-3">{{eachpc.9.1.value|floatformat:2}}</p>
+                </div>
+                <div class="col-lg-auto col-8">
+                    <p class="mb-0 fw-bold">Price:</p>
+                    <p class="mb-0 fw-bold text-theme fs-3">₫{{eachpc.8.1.value|floatformat:"0g"}}</p>
+                </div>
+                <div class="col-lg-1 col-12 text-center">
+                    <button class="btn w-75" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse" id="pc{{forloop.counter}}">
+<!--                CPU-->
+                <div class="row align-items-center justify-content-between border-top border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">CPU</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.0.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.0.1.name1}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-cpu">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Brand</th>
+                                        <td class="col-6">{{eachpc.0.1.brand}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Benchmark</th>
+                                        <td>{{eachpc.0.1.bench}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Processor number</th>
+                                        <td>{{eachpc.0.1.processor_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Max memory size</th>
+                                        <td>{{eachpc.0.1.max_memory_sizer }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Memory type</th>
+                                        <td>{{eachpc.0.1.memory_type }}</td>
+                                    </tr>
+                                    <tr class="">
+                                        <th scope="row">Socket supported</th>
+                                        <td>{{eachpc.0.1.socket_supported }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.0.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-cpu" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+<!--                MAINBOARD-->
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">MAINBOARD</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.1.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.1.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-board">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Socket</th>
+                                        <td class="col-6">{{eachpc.1.1.socket}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Chipset</th>
+                                        <td>{{eachpc.1.1.chipset}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Memory slot</th>
+                                        <td>{{eachpc.1.1.ram_slot}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Memory type</th>
+                                        <td>{{eachpc.1.1.memory_type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Max memory size</th>
+                                        <td>{{eachpc.1.1.max_memory_size}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.1.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-board" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+<!--                GPU-->
+                {% if eachpc.2.1 %}
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">GPU</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.2.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.2.1.brand}} {{eachpc.2.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-gpu">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Brand</th>
+                                        <td class="col-6">{{eachpc.2.1.brand}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Benchmark</th>
+                                        <td>{{eachpc.2.1.bench}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.2.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-gpu" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+<!--                RAM-->
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">RAM</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.3.1.0.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.3.1.0.brand}} {{eachpc.3.1.0.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-ram">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Brand</th>
+                                        <td class="col-6">{{eachpc.3.1.0.brand}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Benchmark</th>
+                                        <td>{{eachpc.3.1.0.bench}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Memory type</th>
+                                        <td>{{eachpc.3.1.0.memory_type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Quantity</th>
+                                        <td>{{eachpc.3.1.0.quantity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Size</th>
+                                        <td>{{eachpc.3.1.0.size}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        {% if eachpc.3.1|length == 1 %}
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.3.1.0.price|floatformat:"0g"}}</p>
+                        {% else %}
+                        <p class="fw-bold fs-6 text-theme mb-0 text-lg-end text-center">₫{{eachpc.3.1.0.price|floatformat:"0g"}}</p>
+                        <p class="fw-bold fs-6 mb-0 text-lg-end text-center">x{{eachpc.3.1|length}}</p>
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.3.1|length|mul:eachpc.3.1.0.price|floatformat:"0g"}}</p>
+                        {% endif %}
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-ram" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+<!--                SSD-->
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">SSD</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.4.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.4.1.brand}} {{eachpc.4.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-ssd">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Benchmark</th>
+                                        <td class="col-6">{{eachpc.4.1.bench}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Capacity</th>
+                                        <td>{{eachpc.4.1.capacity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Unit</th>
+                                        <td>{{eachpc.4.1.unit}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.4.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-ssd" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+<!--                HDD-->
+                {% if eachpc.5.1 %}
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">HDD</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.5.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.5.1.brand}} {{eachpc.5.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-hdd">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Benchmark</th>
+                                        <td class="col-6">{{eachpc.5.1.bench}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Capacity</th>
+                                        <td>{{eachpc.5.1.capacity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Unit</th>
+                                        <td>{{eachpc.5.1.unit}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.5.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-hdd" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+<!--                PSU-->
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">PSU</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.6.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.6.1.brand}} {{eachpc.6.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-psu">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="col-6">Efficient rating</th>
+                                        <td class="col-6">
+                                            {% for k, v in eachpc.6.1.items %}
+                                            {% if k == "efficient rating" %}
+                                            {{v}}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Wattage</th>
+                                        <td>{{eachpc.6.1.wattage}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Protection</th>
+                                        <td>{{eachpc.6.1.protection}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Modularity</th>
+                                        <td>{{eachpc.6.1.modularity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Form factor</th>
+                                        <td>
+                                            {% for k, v in eachpc.6.1.items %}
+                                            {% if k == "form factor" %}
+                                            {{v}}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.6.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-psu" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+<!--                CASE-->
+                <div class="row align-items-center justify-content-between border-bottom py-3 border-dark border-3">
+<!--                    ID-->
+                    <div class="col-lg-2">
+                        <h5 class="fw-bold text-center">CASE</h5>
+                    </div>
+<!--                    IMAGE-->
+                    <div class="col-lg-2 d-flex justify-content-center">
+                        <img src="{{eachpc.7.1.img}}"
+                             alt="" class="img-fluid img-builder-sets" >
+                    </div>
+<!--                    DETAIL-->
+                    <div class="col-lg-5">
+                        <p class="fw-bold fs-5 text-center text-lg-start">{{eachpc.7.1.name}}</p>
+                        <div class="container-fluid collapse" id="pc{{forloop.counter}}-case">
+                            <table class="table">
+                                <tbody>
+                                {% if eachpc.7.1.case_type %}
+                                    <tr>
+                                        <th scope="row" class="col-6">Case type</th>
+                                        <td class="col-6">{{eachpc.7.1.case_type}}</td>
+                                    </tr>
+                                {% endif %}
+                                    <tr>
+                                        <th scope="row" class="col-6">Board supported</th>
+                                        <td class="col-6">{{eachpc.7.1.board_supported}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!--                    PRICE-->
+                    <div class="col-lg-2">
+                        <p class="fw-bold fs-5 text-theme mb-0 text-lg-end text-center">₫{{eachpc.7.1.price|floatformat:"0g"}}</p>
+                    </div>
+<!--                    EXTEND-->
+                    <div class="col-lg-1 d-flex justify-content-center mt-2 mt-lg-0">
+                        <button class="btn rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#pc{{forloop.counter}}-case" aria-expanded="false" aria-controls="pc{{forloop.counter}}">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row justify-content-evenly px-2 mx-2 py-2">
+                    <div class="col-auto d-flex justify-content-center align-items-center mb-3 mb-lg-0">
+                        <a href="{% url 'build:build' %}?index={{page_obj.number|sub:'1'|mul:'10'|add:forloop.counter}}" class="btn btn-grad-info">Customize this build</a>
+                    </div>
+                    <div class="col-auto d-flex justify-content-center align-items-center">
+                        <a href="{% url 'build:pc_detail' %}?index={{page_obj.number|sub:'1'|mul:'10'|add:forloop.counter}}" class="btn btn-grad-success">Show detailed information</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mb-3">
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item ">
+                    <a href="?page=1" class="page-link">&laquo; First</a>
+                </li>
+                <li class="page-item ">
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+                {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">&laquo; First</a>
+                </li>
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">Previous</a>
+                {% endif %}
+                </li>
+                <li class="page-item disabled text-dark">
+                    <a class="current page-link" href="#">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </a>
+                </li>
+                {% if page_obj.has_next %}
+                <li class="page-item ">
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+                </li>
+                <li class="page-item ">
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+                {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">Next</a>
+                </li>
+                <li class="page-item ">
+                    <a href="#" class="page-link">Last &raquo;</a>
+                {% endif %}
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--modal not found-->
+<div class="modal hide fade" tabindex="-1" id="notfound">
+    <div class="modal-dialog modal-lg modal-dialog-centered" >
+        <div class="modal-content rounded-3" id="notfound-body">
+
+            <div class="modal-body border-0 rounded-3 py-4 my-4">
+                <div class="row justify-content-center align-items-center mt-3">
+                    <div class="col-lg-6 col-12 offset-lg-6 d-flex justify-content-center align-items-center">
+                        <div class="row">
+                            <p class="fs-2 fw-bold" style="color: #00043a">Hmmm...</p>
+                            <p class="fs-5" style="color: #00043a"> We were unable to found anything that met your requirements. <br>
+                                Try different search criteria or check out some of our top trending combinations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 mb-4">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--not found modal-->
+<script>
+    $(window).on('load', function() {
+        if ($('.alert-danger').length) {
+            $('#notfound').modal('show');
+        }
+    });
+</script>
+
+{% endblock %}

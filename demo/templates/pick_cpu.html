@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            pick cpu
+        </title>
+
+    </head>
+    <body>
+        <form action="{% url 'build:pick_cpu' %}" method='post'>
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+        </form>
+        <ul>
+            {% for cpu in cpu_list %}
+                <li>
+                    {{cpu}}
+                </li>
+            {% endfor %}
+
+        </ul>
+    </body>
+</html>

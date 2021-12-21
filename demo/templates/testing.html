@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Testing
+        </title>
+    </head>
+    <body>
+        <button id="gen" value="1">
+            GENERATE
+        </button>
+        <button id="take" value="0">
+            GET
+        </button>
+    </body>
+
+    <script>
+        document.querySelector("#gen").onclick = function() {
+            fetch('http://127.0.0.1:8000/demo/testing/', {
+                method: "POST",
+                body: JSON.stringify( {'index': this.value, 'op': 'a'} )
+            })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data);
+                    console.log(data)
+                });
+        }
+        document.querySelector("#get").onclick = function() {
+            location.href='http://127.0.0.1:8000/demo/build?index=' + this.value
+        }
+
+    </script>
+</html>

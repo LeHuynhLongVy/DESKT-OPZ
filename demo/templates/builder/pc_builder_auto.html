@@ -1,0 +1,129 @@
+{% extends "builder/layout.html" %}
+
+{% load crispy_forms_tags %}
+{% load l10n %}
+{% load humanize %}
+
+{% block body %}
+
+    <div class="container-fluid bg-builder">
+        <div class="row justify-content-center h-100">
+            <div class="container-fluid container-lg py-5 mb-5">
+                <h2 class="text-center text-white mb-5 fw-bold">PC Builder</h2>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6 col-12">
+                        <form action="{% url 'build:pc_builder_sets' %}" method="post" class="" onsubmit="return validateForm()">
+                            {% csrf_token %}
+    <!--                        Purpose-->
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-12 mb-3">
+                                    <label for="{{ form.purpose.id_for_label }}" class="form-label text-light fw-bold">Purpose</label>
+                                    {{ form.purpose }}
+                                </div>
+                            </div>
+    <!--                        Budget-->
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-lg-6 col-12 mb-3">
+                                    <label for="{{ form.budget.id_for_label }}" class="form-label text-light fw-bold">Maximum budget</label>
+                                    {{ form.budget }}
+                                </div>
+                                <div class="col-lg-6 col-12 mb-3">
+                                    <label for="{{ form.budget2.id_for_label }}" class="form-label text-light fw-bold">Minimum budget (optional)</label>
+                                    {{ form.budget2 }}
+                                </div>
+                            </div>
+                            <div class="collapse" id="advancedoptions">
+    <!--                            Overclock-->
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-6 col-12 mb-3">
+                                        <label for="{{ form.overclock.id_for_label }}" class="form-label text-light fw-bold">Overclockable platform</label>
+                                        {{ form.overclock }}
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-3">
+                                        <label for="{{ form.brand.id_for_label }}" class="form-label text-light fw-bold">CPU Brand</label>
+                                        {{ form.brand }}
+                                    </div>
+                                </div>
+    <!--                            RAM-->
+                                <div class="row justify-content-center align-items-center">
+                                <div class="col-lg-6 col-12 mb-3">
+                                    <label for="{{ form.ram.id_for_label }}" class="form-label text-light fw-bold">RAM type</label>
+                                    {{ form.ram }}
+                                </div>
+                                <div class="col-lg-6 col-12 mb-3">
+                                    <label for="{{ form.ram_amount.id_for_label }}" class="form-label text-light fw-bold">RAM amount</label>
+                                    {{ form.ram_amount }}
+                                </div>
+                            </div>
+    <!--                            SSD, HDD-->
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-6 col-12 mb-3">
+                                        <label for="{{ form.storage_ssd.id_for_label }}" class="form-label text-light fw-bold">SSD capacity</label>
+                                        {{ form.storage_ssd }}
+                                    </div>
+                                    <div class="col-lg-6 col-12 mb-3">
+                                        <label for="{{ form.storage_hdd.id_for_label }}" class="form-label text-light fw-bold">HDD capacity</label>
+                                        {{ form.storage_hdd }}
+                                    </div>
+                                </div>
+    <!--                            Form factor-->
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-12 mb-3">
+                                        <label for="{{ form.form_factor.id_for_label }}" class="form-label text-light fw-bold">Platform form factor</label>
+                                        {{ form.form_factor }}
+                                    </div>
+                                </div>
+    <!--                            PSU-->
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-12 mb-3">
+                                        <label for="{{ form.psu.id_for_label }}" class="form-label text-light fw-bold">PSU modularity</label>
+                                        {{ form.psu }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-around pt-5">
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-grad-info mb-3">Submit</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-grad-success mb-3" data-bs-toggle="collapse" data-bs-target="#advancedoptions">Advanced Options</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--format input thousand separator-->
+<script>
+    $('#id_budget, #id_budget2').keyup(function() {
+        // 1
+        var $this = $( this );
+        var input = $this.val();
+
+        // 2
+        var input = input.replace(/[\D\s\._\-]+/g, "");
+
+        // 3
+        input = input ? parseInt( input, 10 ) : 0;
+
+        // 4
+        $this.val( function() {
+            return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+        } );
+    });
+</script>
+<!--validate max and min-->
+<script>
+function validateForm() {
+    let max = Number($('#id_budget').val().replaceAll(',',''));
+    let min = Number($('#id_budget2').val().replaceAll(',',''));
+    if ($('#id_budget2').val() != '' && max < min) {
+        alert('Maximum budget should be lower than minimum budget.');
+        return false;
+    }
+}
+</script>
+{% endblock %}

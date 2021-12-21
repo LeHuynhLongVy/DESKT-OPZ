@@ -1,0 +1,490 @@
+{% extends "builder/layout.html" %}
+{% load humanize %} {% load mathfilters %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid bg-gradient2">
+    <p class="text-center h1 py-3 mb-0 text-white text-bold">Search a PSU</p>
+</div>
+<div class="container-fluid p-lg-5">
+    <form id="product-psu-search" method="post">
+    <div class="row gx-5">
+        <div class="col-lg-2 col-12">
+<!--            filter-brand-->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs- pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">BRAND</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#brand-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="brand-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="psubrand" id="psubrandall" checked>
+                        <label class="form-check-label" for="psubrandall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ANTEC" name="psubrand" id="psubrandantec">
+                        <label class="form-check-label" for="psubrandantec">
+                            ANTEC
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ASUS" name="psubrand" id="psubrandasus">
+                        <label class="form-check-label" for="psubrandasus">
+                            ASUS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="COOLER MASTER" name="psubrand" id="psubrandcoolermaster">
+                        <label class="form-check-label" for="psubrandcoolermaster">
+                            COOLER MASTER
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="CORSAIR" name="psubrand" id="psubrandcorsair">
+                        <label class="form-check-label" for="psubrandcorsair">
+                            CORSAIR
+                        </label>
+                    </div>
+                    <div id="psu-brand-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="DEEPCOOL" name="psubrand" id="psubranddeepcool">
+                            <label class="form-check-label" for="psubranddeepcool">
+                                DEEPCOOL
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="GIGABYTE" name="psubrand" id="psubrandgigabyte">
+                            <label class="form-check-label" for="psubrandgigabyte">
+                                GIGABYTE
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="MSI" name="psubrand" id="psubrandmsi">
+                            <label class="form-check-label" for="psubrandmsi">
+                                MSI
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="NZXT" name="psubrand" id="psubrandnzxt">
+                            <label class="form-check-label" for="psubrandnzxt">
+                                NZXT
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="SILVERSTONE" name="psubrand" id="psubrandsilverstone">
+                            <label class="form-check-label" for="psubrandsilverstone">
+                                SILVERSTONE
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#psu-brand-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-efficient-rating -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">EFFICIENT RATING</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#efficient-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="efficient-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="psuefficientrating" id="psuefficientratingall" checked>
+                        <label class="form-check-label" for="psuefficientratingall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="80 PLUS" name="psuefficientrating" id="psu80plus">
+                        <label class="form-check-label" for="psu80plus">
+                            80 PLUS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="80 PLUS BRONZE" name="psuefficientrating" id="psu80plusbronze">
+                        <label class="form-check-label" for="psu80plusbronze">
+                            80 PLUS BRONZE
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="80 PLUS GOLD" name="psuefficientrating" id="psu80plusgold">
+                        <label class="form-check-label" for="psu80plusgold">
+                            80 PLUS GOLD
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="80 PLUS PLATINUM" name="psuefficientrating" id="psu80plusplatinum">
+                        <label class="form-check-label" for="psu80plusplatinum">
+                            80 PLUS PLATINUM
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="80 PLUS TITANIUM" name="psuefficientrating" id="psu80plustitanium">
+                        <label class="form-check-label" for="psu80plustitanium">
+                            80 PLUS TITANIUM
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-psu-wattage -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">WATTAGE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#wattage-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="wattage-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="psuwattage" id="psuwattageall" checked>
+                        <label class="form-check-label" for="psuwattageall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="400" name="psuwattage" id="psu400">
+                        <label class="form-check-label" for="psu400">
+                            400
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="450" name="psuwattage" id="psu450">
+                        <label class="form-check-label" for="psu450">
+                            450
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="500" name="psuwattage" id="psu500">
+                        <label class="form-check-label" for="psu500">
+                            500
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="550" name="psuwattage" id="psu550">
+                        <label class="form-check-label" for="psu550">
+                            550
+                        </label>
+                    </div>
+                    <div id="psu-wattage-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="600" name="psuwattage" id="psu600">
+                            <label class="form-check-label" for="psu600">
+                                600
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="650" name="psuwattage" id="psu650">
+                            <label class="form-check-label" for="psu650">
+                                650
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="700" name="psuwattage" id="psu700">
+                            <label class="form-check-label" for="psu700">
+                                700
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="750" name="psuwattage" id="psu750">
+                            <label class="form-check-label" for="psu750">
+                                750
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="850" name="psuwattage" id="psu850">
+                            <label class="form-check-label" for="psu850">
+                                850
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1000" name="psuwattage" id="psu1000">
+                            <label class="form-check-label" for="psu1000">
+                                1000
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1200" name="psuwattage" id="psu1200">
+                            <label class="form-check-label" for="psu1200">
+                                1200
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1600" name="psuwattage" id="psu1600">
+                            <label class="form-check-label" for="psu1600">
+                                1600
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#psu-wattage-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-modularity -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">MODULARITY</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#modularity-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="modularity-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="psumodularity" id="psumodularityall" checked>
+                        <label class="form-check-label" for="psumodularityall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="NON MODULAR" name="psumodularity" id="psunonmodular">
+                        <label class="form-check-label" for="psunonmodular">
+                            NON MODULAR
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="FULL MODULAR" name="psumodularity" id="psumodular">
+                        <label class="form-check-label" for="psumodular">
+                            FULL MODULAR
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+    <!--            filter-form-factor -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">FORM FACTOR</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#formfactor-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="formfactor-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="psuformfactor" id="psuformfactorall" checked>
+                        <label class="form-check-label" for="psuformfactorall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ATX" name="psuformfactor" id="psuatx">
+                        <label class="form-check-label" for="psuatx">
+                            ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="SFX" name="psuformfactor" id="psusfx">
+                        <label class="form-check-label" for="psusfx">
+                            SFX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="SFC/ATX" name="psuformfactor" id="psusfcatx">
+                        <label class="form-check-label" for="psusfcatx">
+                            SFC/ATX
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+<!--            filter-price -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="psuprice" class="form-label mb-0">PRICE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#price-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="price-expand" class="collapse show">
+                    <input name="psuprice" type="text" id="psuprice" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="price-range"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-grad-info w-75" type="submit" id="product_psu_search_btn">Search</button>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="row justify-content-center border-bottom border-dark py-2">
+                <div class="col align-self-end">
+                    <p class="mb-0 fw-bold">{{psu_list|length}} Products Found</p>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search..." name="psuname">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <table class="table sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-table-header">Name</th>
+                            <th scope="col" class="product-table-header">Brand</th>
+                            <th scope="col" class="product-table-header">Efficient Rating</th>
+                            <th scope="col" class="product-table-header">Wattage</th>
+                            <th scope="col" class="product-table-header">Protection</th>
+                            <th scope="col" class="product-table-header">Modularity</th>
+                            <th scope="col" class="product-table-header">Form Factor</th>
+                            <th scope="col" class="product-table-header text-end">Price(₫)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_psu_filter_slot">
+
+                        {% for psu in psu_list %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-auto">
+                                        <a href="#" class="fw-bold" target="_blank"><img src="{{psu.img}}" alt="" class="product-img"></a>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="#" class="fw-bold" target="_blank">{{psu.brand}} {{psu.name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{psu.brand}}</td>
+                            {% for key, value in psu.items %}
+                            {% if key == "efficient rating" %}
+                            <td>{{value}}</td>
+                            {% endif %}
+                            {% endfor %}
+                            <td>{{psu.wattage}}</td>
+                            <td>{{psu.protection}}</td>
+                            <td>{{psu.modularity}}</td>
+                            {% for key, value in psu.items %}
+                            {% if key == "form factor" %}
+                            <td>{{value}}</td>
+                            {% endif %}
+                            {% endfor %}
+                            <td class="fw-bold text-end">{{psu.price|floatformat:"0g"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script>
+//  BRAND
+$('#psubrandall').click(function() {
+    if ($('#psubrandall').prop('checked')) {
+        $('input[name="psubrand"][id!="psubrandall"]').prop('checked', false);
+    }
+})
+$('input[name="psubrand"][id!="psubrandall"]').click(function() {
+    if ($('input[name="psubrand"][id!="psubrandall"]:checked').length) {
+        $('#psubrandall').prop('checked', false);
+    }
+    else $('#psubrandall').prop('checked', true);
+})
+//  EFFICIENT RATING
+$('#psuefficientratingall').click(function() {
+    if ($('#psuefficientratingall').prop('checked')) {
+        $('input[name="psuefficientrating"][id!="psuefficientratingall"]').prop('checked', false);
+    }
+})
+$('input[name="psuefficientrating"][id!="psuefficientratingall"]').click(function() {
+    if ($('input[name="psuefficientrating"][id!="psuefficientratingall"]:checked').length) {
+        $('#psuefficientratingall').prop('checked', false);
+    }
+    else $('#psuefficientratingall').prop('checked', true);
+})
+// WATTAGE
+$('#psuwattageall').click(function() {
+    if ($('#psuwattageall').prop('checked')) {
+        $('input[name="psuwattage"][id!="psuwattageall"]').prop('checked', false);
+    }
+})
+$('input[name="psuwattage"][id!="psuwattageall"]').click(function() {
+    if ($('input[name="psuwattage"][id!="psuwattageall"]:checked').length) {
+        $('#psuwattageall').prop('checked', false);
+    }
+    else $('#psuwattageall').prop('checked', true);
+})
+// MODULARITY
+$('#psumodularityall').click(function() {
+    if ($('#psumodularityall').prop('checked')) {
+        $('input[name="psumodularity"][id!="psumodularityall"]').prop('checked', false);
+    }
+})
+$('input[name="psumodularity"][id!="psumodularityall"]').click(function() {
+    if ($('input[name="psumodularity"][id!="psumodularityall"]:checked').length) {
+        $('#psumodularityall').prop('checked', false);
+    }
+    else $('#psumodularityall').prop('checked', true);
+})
+// FORM FACTOR
+$('#psuformfactorall').click(function() {
+    if ($('#psuformfactorall').prop('checked')) {
+        $('input[name="psuformfactor"][id!="psuformfactorall"]').prop('checked', false);
+    }
+})
+$('input[name="psuformfactor"][id!="psuformfactorall"]').click(function() {
+    if ($('input[name="psuformfactor"][id!="psuformfactorall"]:checked').length) {
+        $('#psuformfactorall').prop('checked', false);
+    }
+    else $('#psuformfactorall').prop('checked', true);
+})
+</script>
+<!--price-->
+<script>
+    $( function() {
+        $( "#price-range" ).slider({
+            range: true,
+            min: 850000,
+            max: 13000000,
+            step: 50000,
+            values: [ 850000, 13000000 ],
+            slide: function( event, ui ) {
+                $( "#psuprice" ).val( ui.values[ 0 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) + " - " + ui.values[ 1 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+            }
+        });
+        $( "#psuprice" ).val( $( "#price-range" ).slider( "values", 0 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +
+            " - " + $( "#price-range" ).slider( "values", 1 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    } );
+</script>
+
+<!--search-psu-->
+<script>
+const psu = document.getElementById('product-psu-search');
+psu.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('http://127.0.0.1:8000/demo/product_psu_search/', {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        mode: 'same-origin',
+    })
+    .then(re => re.json())
+    .then(data => {
+        JSON.stringify(data);
+        $('#product_psu_filter_slot').empty();
+        $('#psu-search-result').text(data.psu_list.length+' Products Found');
+        for (let i = 1; i<=data.psu_list.length; i++) {
+            let newtablerow = $('<tr></tr>');
+            let newname = $('<td>' +
+                '                                <div class="row">' +
+                '                                    <div class="col-lg-auto">' +
+                '                                        <a href="#" class="fw-bold" target="_blank"><img src="'+data.psu_list[i-1].img+'" alt="" class="product-img"></a>' +
+                '                                    </div>' +
+                '                                    <div class="col d-flex align-items-center">\n' +
+                '                                        <a href="#" class="fw-bold" target="_blank">'+data.psu_list[i-1].brand + ' ' + data.psu_list[i-1].name +'</a>\n' +
+                '                                    </div>' +
+                '                                </div>' +
+                '                            </td>');
+            let newpsubrand = $('<td>'+data.psu_list[i-1].brand+'</td>');
+            let neweffi = $('<td>'+data.psu_list[i-1]["efficient rating"]+'</td>');
+            let newwattage = $('<td>'+data.psu_list[i-1].wattage+'</td>');
+            let newprotection = $('<td>'+data.psu_list[i-1].protection+'</td>');
+            let newmodularity = $('<td>'+data.psu_list[i-1].modularity+'</td>');
+            let newformfactor = $('<td>'+data.psu_list[i-1]["form factor"]+'</td>');
+            let newprice = $('<td class="fw-bold text-end">'+priceFormatter.format(Number(data.psu_list[i-1].price)).substring(1)+'</td>');
+            newtablerow.append(newname, newpsubrand, neweffi, newwattage,newprotection,newmodularity,newformfactor,newprice);
+            $('#product_psu_filter_slot').append(newtablerow);
+        }
+    });
+})
+</script>
+{% endblock %}

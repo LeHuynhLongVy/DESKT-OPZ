@@ -1,0 +1,412 @@
+{% extends "builder/layout.html" %}
+{% load humanize %} {% load mathfilters %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid bg-gradient2">
+    <p class="text-center h1 py-3 mb-0 text-white text-bold">Search a CPU</p>
+</div>
+<div class="container-fluid p-lg-5">
+    <form id="product-cpu-search" method="post">
+    <div class="row gx-5">
+        <div class="col-lg-2 col-12">
+<!--            filter-brand-->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs- pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">BRAND</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#brand-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="brand-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="cpubrand" id="cpubrandall" checked>
+                        <label class="form-check-label" for="cpubrandall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="AMD" name="cpubrand" id="cpubrandamd">
+                        <label class="form-check-label" for="cpubrandamd">
+                            AMD
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Intel" name="cpubrand" id="cpubrandintel">
+                        <label class="form-check-label" for="cpubrandintel">
+                            Intel
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-series -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">SERIES</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#series-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="series-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="cpuseries" id="cpuseriesall" checked>
+                        <label class="form-check-label" for="cpuseriesall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Core i3" name="cpuseries" id="intelcorei3">
+                        <label class="form-check-label" for="intelcorei3">
+                            Intel Core i3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Core i5" name="cpuseries" id="intelcorei5">
+                        <label class="form-check-label" for="intelcorei5">
+                            Intel Core i5
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Core i7" name="cpuseries" id="intelcorei7">
+                        <label class="form-check-label" for="intelcorei7">
+                            Intel Core i7
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Core i9" name="cpuseries" id="intelcorei9">
+                        <label class="form-check-label" for="intelcorei9">
+                            Intel Core i9
+                        </label>
+                    </div>
+                    <div id="cpu-series-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Ryzen 3" name="cpuseries" id="amdryzen3">
+                            <label class="form-check-label" for="amdryzen3">
+                                AMD Ryzen 3
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Ryzen 5" name="cpuseries" id="amdryzen5">
+                            <label class="form-check-label" for="amdryzen5">
+                                AMD Ryzen 5
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Ryzen 6" name="cpuseries" id="amdryzen7">
+                            <label class="form-check-label" for="amdryzen7">
+                                AMD Ryzen 6
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Ryzen TR" name="cpuseries" id="amdryzentr">
+                            <label class="form-check-label" for="amdryzentr">
+                                AMD Ryzen TR
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#cpu-series-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-bench -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="cpubench" class="form-label mb-0">BENCH</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#bench-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="bench-expand" class="collapse show">
+                    <input name="cpubench" type="text" id="cpubench" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="bench-range"></div>
+                </div>
+            </div>
+<!--            filter-price -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="cpuprice" class="form-label mb-0">PRICE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#price-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="price-expand" class="collapse show">
+                    <input name="cpuprice" type="text" id="cpuprice" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="price-range"></div>
+                </div>
+            </div>
+<!--            filter-socket -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">SOCKET</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#socket-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="socket-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="cpusocket" id="cpusocketall" checked>
+                        <label class="form-check-label" for="cpusocketall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="AM4" name="cpusocket" id="AM4">
+                        <label class="form-check-label" for="AM4">
+                            AM4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="sTR4" name="cpusocket" id="sTR4">
+                        <label class="form-check-label" for="sTR4">
+                            sTR4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="sTRX4" name="cpusocket" id="sTRX4">
+                        <label class="form-check-label" for="sTRX4">
+                            sTRX4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="FCBGA1356" name="cpusocket" id="FCBGA1356">
+                        <label class="form-check-label" for="FCBGA1356">
+                            FCBGA1356
+                        </label>
+                    </div>
+                    <div id="cpu-socket-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCBGA1364" name="cpusocket" id="FCBGA1364">
+                            <label class="form-check-label" for="FCBGA1364">
+                                FCBGA1364
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCBGA1440" name="cpusocket" id="FCBGA1440">
+                            <label class="form-check-label" for="FCBGA1440">
+                                FCBGA1440
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA1150" name="cpusocket" id="FCLGA1150">
+                            <label class="form-check-label" for="FCLGA1150">
+                                FCLGA1150
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA1151" name="cpusocket" id="FCLGA1151">
+                            <label class="form-check-label" for="FCLGA1151">
+                                FCLGA1151
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA1200" name="cpusocket" id="FCLGA1200">
+                            <label class="form-check-label" for="FCLGA1200">
+                                FCLGA1200
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA2011" name="cpusocket" id="FCLGA2011">
+                            <label class="form-check-label" for="FCLGA2011">
+                                FCLGA2011
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA2011-3" name="cpusocket" id="FCLGA2011-3">
+                            <label class="form-check-label" for="FCLGA2011-3">
+                                FCLGA2011-3
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCLGA2066" name="cpusocket" id="FCLGA2066">
+                            <label class="form-check-label" for="FCLGA2066">
+                                FCLGA2066
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCPGA946" name="cpusocket" id="FCPGA946">
+                            <label class="form-check-label" for="FCPGA946">
+                                FCPGA946
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="FCPGA988" name="cpusocket" id="FCPGA988">
+                            <label class="form-check-label" for="FCPGA988">
+                                FCPGA988
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#cpu-socket-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-grad-info w-75" type="submit" id="product_cpu_search_btn">Search</button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row justify-content-center border-bottom border-dark py-2">
+                <div class="col align-self-end">
+                    <p class="mb-0 fw-bold text-lg-start text-center" id="cpu-search-result">{{cpu_list|length}} Products Found</p>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search..." name="cpuname">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <table class="table sortable" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-table-header">Name</th>
+                            <th scope="col" class="product-table-header">Brand</th>
+                            <th scope="col" class="product-table-header">Socket</th>
+                            <th scope="col" class="product-table-header">Value</th>
+                            <th scope="col" class="product-table-header">Bench</th>
+                            <th scope="col" class="product-table-header">Rating</th>
+                            <th scope="col" class="product-table-header text-end">Price(₫)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_cpu_filter_slot">
+                        {% for cpu in cpu_list %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-auto">
+                                        <a href="#" class="fw-bold" target="_blank"><img src="{{cpu.img}}" alt="" class="product-img"></a>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="#" class="fw-bold" target="_blank">{{cpu.brand}} {{cpu.name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{cpu.brand}}</td>
+                            <td>{{cpu.socket_supported}}</td>
+                            <td>{{cpu.value}}</td>
+                            <td>{{cpu.bench}}</td>
+                            <td>{{cpu.user_rating}}</td>
+                            <td class="fw-bold text-end">{{cpu.price|floatformat:"0g"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+
+</div>
+
+<!--startup-->
+<script>
+//  BRAND
+$('#cpubrandall').click(function() {
+    if ($('#cpubrandall').prop('checked')) {
+        $('#cpubrandamd, #cpubrandintel').prop('checked', false);
+    }
+})
+$('#cpubrandamd, #cpubrandintel').click(function() {
+    if ($('#cpubrandamd').prop('checked') || $('#cpubrandintel').prop('checked')) {
+        $('#cpubrandall').prop('checked', false);
+    }
+    else $('#cpubrandall').prop('checked', true);
+
+})
+//  SERIES
+$('#cpuseriesall').click(function() {
+    if ($('#cpuseriesall').prop('checked')) {
+        $('input[name="cpuseries"][id!="cpuseriesall"]').prop('checked', false);
+    }
+})
+$('input[name="cpuseries"][id!="cpuseriesall"]').click(function() {
+    if ($('input[name="cpuseries"][id!="cpuseriesall"]:checked').length) {
+        $('#cpuseriesall').prop('checked', false);
+    }
+    else $('#cpuseriesall').prop('checked', true);
+})
+//  SOCKET
+$('#cpusocketall').click(function() {
+    if ($('#cpusocketall').prop('checked')) {
+        $('input[name="cpusocket"][id!="cpusocketall"]').prop('checked', false);
+    }
+})
+$('input[name="cpusocket"][id!="cpusocketall"]').click(function() {
+    if ($('input[name="cpusocket"][id!="cpusocketall"]:checked').length) {
+        $('#cpusocketall').prop('checked', false);
+    }
+    else $('#cpusocketall').prop('checked', true);
+})
+
+</script>
+<!--search-->
+<script>
+const cpu = document.getElementById('product-cpu-search');
+cpu.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('http://127.0.0.1:8000/demo/product_cpu_search/', {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        mode: 'same-origin',
+    })
+    .then(re => re.json())
+    .then(data => {
+        JSON.stringify(data);
+        console.log(data);
+
+        $('#product_cpu_filter_slot').empty();
+        $('#cpu-search-result').text(data.cpu_list.length+' Products Found');
+        for (let i = 1; i<=data.cpu_list.length; i++) {
+            let newtablerow = $('<tr></tr>');
+            let newname = $('<td>' +
+                '                                <div class="row">' +
+                '                                    <div class="col-lg-auto">' +
+                '                                        <a href="#" class="fw-bold" target="_blank"><img src="'+data.cpu_list[i-1].img+'" alt="" class="product-img"></a>' +
+                '                                    </div>' +
+                '                                    <div class="col d-flex align-items-center">\n' +
+                '                                        <a href="#" class="fw-bold" target="_blank">'+data.cpu_list[i-1].brand + ' ' + data.cpu_list[i-1].name +'</a>\n' +
+                '                                    </div>' +
+                '                                </div>' +
+                '                            </td>');
+            let newbrand = $('<td>'+data.cpu_list[i-1].brand+'</td>');
+            let newsocket = $('<td>'+data.cpu_list[i-1].socket_supported+'</td>');
+            let newvalue = $('<td>'+data.cpu_list[i-1].value+'</td>');
+            let newbench = $('<td>'+data.cpu_list[i-1].bench+'</td>');
+            let newuserrating = $('<td>'+data.cpu_list[i-1].user_rating+'</td>');
+            let newprice = $('<td class="fw-bold text-end">'+priceFormatter.format(Number(data.cpu_list[i-1].price)).substring(1)+'</td>');
+            newtablerow.append(newname, newbrand, newsocket, newvalue, newbench, newuserrating, newprice);
+            $('#product_cpu_filter_slot').append(newtablerow);
+        }
+    });
+})
+</script>
+<!--price-->
+<script>
+    $( function() {
+        $( "#price-range" ).slider({
+            range: true,
+            min: 2000000,
+            max: 45000000,
+            step: 1000000,
+            values: [ 2000000, 45000000 ],
+            slide: function( event, ui ) {
+                $( "#cpuprice" ).val( ui.values[ 0 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) + " - " + ui.values[ 1 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+            }
+        });
+        $( "#cpuprice" ).val( $( "#price-range" ).slider( "values", 0 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +
+            " - " + $( "#price-range" ).slider( "values", 1 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    } );
+</script>
+<!--bench-->
+<script>
+    $( function() {
+        $( "#bench-range" ).slider({
+            range: true,
+            min: 0,
+            max: 200,
+            step: 10,
+            values: [ 0, 200 ],
+            slide: function( event, ui ) {
+                $( "#cpubench" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#cpubench" ).val( $( "#bench-range" ).slider( "values", 0 ) +
+            " - " + $( "#bench-range" ).slider( "values", 1 ));
+    } );
+</script>
+{% endblock %}

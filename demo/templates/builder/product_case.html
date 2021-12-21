@@ -1,0 +1,352 @@
+{% extends "builder/layout.html" %}
+{% load humanize %} {% load mathfilters %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid bg-gradient2">
+    <p class="text-center h1 py-3 mb-0 text-white text-bold">Search a CASE</p>
+</div>
+<div class="container-fluid p-lg-5">
+    <form id="product-case-search" method="post">
+    <div class="row gx-5">
+        <div class="col-lg-2 col-12">
+<!--            filter-brand-->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs- pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">BRAND</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#brand-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="brand-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="casebrand" id="casebrandall" checked>
+                        <label class="form-check-label" for="casebrandall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Aerocool" name="casebrand" id="casebrandaerocool">
+                        <label class="form-check-label" for="casebrandaerocool">
+                            Aerocool
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Antec" name="casebrand" id="casebrandantec">
+                        <label class="form-check-label" for="casebrandantec">
+                            Antec
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Asus" name="casebrand" id="casebrandsasus">
+                        <label class="form-check-label" for="casebrandsasus">
+                            Asus
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Cooler Master" name="casebrand" id="casebrandcoolermaster">
+                        <label class="form-check-label" for="casebrandcoolermaster">
+                            Cooler Master
+                        </label>
+                    </div>
+                    <div id="case-brand-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="DEEPCOOL" name="casebrand" id="casebranddeepcool">
+                            <label class="form-check-label" for="casebranddeepcool">
+                                DEEPCOOL
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="EROSI" name="casebrand" id="casebranderosi">
+                            <label class="form-check-label" for="casebranderosi">
+                                EROSI
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Gigabyte" name="casebrand" id="casebrandgigabyte">
+                            <label class="form-check-label" for="casebrandgigabyte">
+                                Gigabyte
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Golden Field" name="casebrand" id="casebrandgoldenfield">
+                            <label class="form-check-label" for="casebrandgoldenfield">
+                                Golden Field
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Jetek" name="casebrand" id="casebrandjetek">
+                            <label class="form-check-label" for="casebrandjetek">
+                                Jetek
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Patriot" name="casebrand" id="casebrandpatriot">
+                            <label class="form-check-label" for="casebrandpatriot">
+                                Patriot
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Sahara" name="casebrand" id="casebrandsahara">
+                            <label class="form-check-label" for="casebrandsahara">
+                                Sahara
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Sama" name="casebrand" id="casebrandsama">
+                            <label class="form-check-label" for="casebrandsama">
+                                Sama
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="XIGMATEK" name="casebrand" id="casebrandxigmatek">
+                            <label class="form-check-label" for="casebrandxigmatek">
+                                XIGMATEK
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="MSI" name="casebrand" id="casebrandmsi">
+                            <label class="form-check-label" for="casebrandmsi">
+                                MSI
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#case-brand-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-case-type -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">CASE TYPE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#type-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="type-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="casetype" id="casetypeall" checked>
+                        <label class="form-check-label" for="casetypeall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Mini Tower" name="casetype" id="casetypemini">
+                        <label class="form-check-label" for="casetypemini">
+                            Mini Tower
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Mid Tower" name="casetype" id="casetypemid">
+                        <label class="form-check-label" for="casetypemid">
+                            Mid Tower
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Full Tower" name="casetype" id="casetypefull">
+                        <label class="form-check-label" for="casetypefull">
+                            Full Tower
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-form-factor -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">FORM FACTOR</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#formfactor-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="formfactor-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="caseformfactor" id="caseformfactorall" checked>
+                        <label class="form-check-label" for="caseformfactorall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Mini-ITX" name="caseformfactor" id="casemini">
+                        <label class="form-check-label" for="casemini">
+                            Mini-ITX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Micro-ATX" name="caseformfactor" id="casemicro">
+                        <label class="form-check-label" for="casemicro">
+                            Micro-ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ATX" name="caseformfactor" id="caseatx">
+                        <label class="form-check-label" for="caseatx">
+                            ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Extended-ATX" name="caseformfactor" id="caseeatx">
+                        <label class="form-check-label" for="caseeatx">
+                            Extended-ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="SSI CEB" name="caseformfactor" id="casessi">
+                        <label class="form-check-label" for="casessi">
+                            SSI CEB
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-price -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="caseprice" class="form-label mb-0">PRICE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#price-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="price-expand" class="collapse show">
+                    <input name="caseprice" type="text" id="caseprice" readonly style="border:0; color:#0d6efd;">
+                    <div id="price-range"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-grad-info w-75" type="submit" id="product_case_search_btn">Search</button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row justify-content-center border-bottom border-dark py-2">
+                <div class="col align-self-end">
+                    <p class="mb-0 fw-bold" id="case-search-result">{{case_list|length}} Compatible Products</p>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search..." name="casename">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <table class="table sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-table-header">Name</th>
+                            <th scope="col" class="product-table-header">Case Type</th>
+                            <th scope="col" class="product-table-header">Board Supported</th>
+                            <th scope="col" class="product-table-header text-end">Price(₫)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_case_filter_slot">
+                        {% for case in case_list %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-auto">
+                                        <a href="#" class="fw-bold" target="_blank"><img src="{{case.img}}" alt="" class="product-img"></a>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="#" class="fw-bold" target="_blank">{{case.name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{case.case_type}}</td>
+                            <td>{{case.board_supported}}</td>
+                            <td class="fw-bold text-end">{{case.price|floatformat:"0g"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script>
+//  BRAND
+$('#casebrandall').click(function() {
+    if ($('#casebrandall').prop('checked')) {
+        $('input[name="casebrand"][id!="casebrandall"]').prop('checked', false);
+    }
+})
+$('input[name="casebrand"][id!="casebrandall"]').click(function() {
+    if ($('input[name="casebrand"][id!="casebrandall"]:checked').length) {
+        $('#casebrandall').prop('checked', false);
+    }
+})
+//  CASE TYPE
+$('#casetypeall').click(function() {
+    if ($('#casetypeall').prop('checked')) {
+        $('input[name="casetype"][id!="casetypeall"]').prop('checked', false);
+    }
+})
+$('input[name="casetype"][id!="casetypeall"]').click(function() {
+    if ($('input[name="casetype"][id!="casetypeall"]:checked').length) {
+        $('#casetypeall').prop('checked', false);
+    }
+})
+// FORM FACTOR
+$('#caseformfactorall').click(function() {
+    if ($('#caseformfactorall').prop('checked')) {
+        $('input[name="caseformfactor"][id!="caseformfactorall"]').prop('checked', false);
+    }
+})
+$('input[name="caseformfactor"][id!="caseformfactorall"]').click(function() {
+    if ($('input[name="caseformfactor"][id!="caseformfactorall"]:checked').length) {
+        $('#caseformfactorall').prop('checked', false);
+    }
+})
+</script>
+
+<script>
+    $( function() {
+        $( "#price-range" ).slider({
+            range: true,
+            min: 200000,
+            max: 80000000,
+            step: 100000,
+            values: [ 200000, 80000000 ],
+            slide: function( event, ui ) {
+                $( "#caseprice" ).val( ui.values[ 0 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) + " - " + ui.values[ 1 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+            }
+        });
+        $( "#caseprice" ).val( $( "#price-range" ).slider( "values", 0 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +
+            " - " + $( "#price-range" ).slider( "values", 1 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    } );
+</script>
+<!--search-->
+<script>
+const pccase = document.getElementById('product-case-search');
+pccase.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    console.log(1);
+    fetch('http://127.0.0.1:8000/demo/product_case_search/', {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        mode: 'same-origin',
+    })
+    .then(re => re.json())
+    .then(data => {
+        JSON.stringify(data);
+        console.log(data);
+
+        $('#product_case_filter_slot').empty();
+        $('#case-search-result').text(data.case_list.length+' Products Found');
+        for (let i = 1; i<=data.case_list.length; i++) {
+            let newtablerow = $('<tr></tr>');
+            let newname = $('<td>' +
+                '                                <div class="row">' +
+                '                                    <div class="col-lg-auto">' +
+                '                                        <a href="#" class="fw-bold" target="_blank"><img src="'+data.case_list[i-1].img+'" alt="" class="product-img"></a>' +
+                '                                    </div>' +
+                '                                    <div class="col d-flex align-items-center">\n' +
+                '                                        <a href="#" class="fw-bold" target="_blank">'+ data.case_list[i-1].name +'</a>\n' +
+                '                                    </div>' +
+                '                                </div>' +
+                '                            </td>');
+            let newcasetype = $('<td>'+data.case_list[i-1].case_type+'</td>');
+            let newboardsupport = $('<td>'+data.case_list[i-1].board_supported+'</td>');
+            let newprice = $('<td class="fw-bold text-end">'+priceFormatter.format(Number(data.case_list[i-1].price)).substring(1)+'</td>');
+            newtablerow.append(newname, newcasetype, newboardsupport, newprice);
+            $('#product_case_filter_slot').append(newtablerow);
+        }
+    });
+})
+</script>
+{% endblock %}

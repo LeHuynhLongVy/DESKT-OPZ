@@ -1,0 +1,2434 @@
+{% extends "builder/layout.html" %}
+{%load crispy_forms_tags %}
+{% load mathfilters %}
+{% block body %}
+
+
+    <div class="container">
+        <div class="row mt-4 mb-3">
+            <h1>Pick your component</h1>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>1. CPU {{ cpu }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="cpuform">
+                        {% csrf_token %}
+                        {{ cpu_form |crispy }}
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="cpu_slot">
+                        {% if picked_pc and picked_pc.0.1 %}
+                        <div class="row mb-2" id="picked-cpu">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.0.1.img}}"
+                                    class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.0.1.name}}</p>
+                                <div class="collapse mt-2" id="picked-cpudetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Brand</th>
+                                                <td class="col-6">{{picked_pc.0.1.brand}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Benchmark</th>
+                                                <td>{{picked_pc.0.1.bench}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Processor number</th>
+                                                <td>{{picked_pc.0.1.processor_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Max memory size</th>
+                                                <td>{{picked_pc.0.1.max_memory_sizer }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Memory type</th>
+                                                <td>{{picked_pc.0.1.memory_type }}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <th scope="row">Socket supported</th>
+                                                <td>{{picked_pc.0.1.socket_supported }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-lg-end justify-content-center py-2">
+                                <span class="text-danger" id="picked-cpuprice">{{picked_pc.0.1.price}}</span>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-cpudetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="remove_cpu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>2. Motherboard {{ board }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="boardform">
+                        {% csrf_token %}
+                        {{ board_form|crispy  }}
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="board_slot">
+                        {% if picked_pc and picked_pc.1.1 %}
+                        <div class="row mb-2" id="picked-board">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.1.1.img}}"
+                                     class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.1.1.name}}</p>
+                                <div class="collapse mt-2" id="picked-boarddetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Socket</th>
+                                                <td class="col-6">{{picked_pc.1.1.socket}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Chipset</th>
+                                                <td>{{picked_pc.1.1.chipset}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Memory slot</th>
+                                                <td>{{picked_pc.1.1.ram_slot}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Memory type</th>
+                                                <td>{{picked_pc.1.1.memory_type}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Max memory size</th>
+                                                <td>{{picked_pc.1.1.max_memory_size}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-end py-2">
+                                <span class="text-danger" id="picked-boardprice">{{picked_pc.1.1.price}}</span>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-boarddetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="remove_board" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>3. GPU {{ gpu }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="gpuform">
+                        {% csrf_token %}
+                        {{ gpu_form|crispy  }}
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="gpu_slot">
+                        {% if picked_pc and picked_pc.2.1 %}
+                        <div class="row mb-2" id="picked-gpu">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.2.1.img}}"
+                                     class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.2.1.name}}</p>
+                                <div class="collapse mt-2" id="picked-gpudetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Brand</th>
+                                                <td class="col-6">{{picked_pc.2.1.brand}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Benchmark</th>
+                                                <td>{{picked_pc.2.1.bench}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-end py-2">
+                                <span class="text-danger" id="picked-gpuprice">{{picked_pc.2.1.price}}</span>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-gpudetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="remove_gpu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>4. RAM {{ ram }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="ramform">
+                        {% csrf_token %}
+                        {{ ram_form|crispy  }}
+                        <div class="d-flex justify-content-evenly">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                            <input type="button" class="btn btn-grad-remove" value="Remove All" id="remove_ram" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="ram_slot">
+                        {% if picked_pc and picked_pc.3.1.0 %}
+                        <div class="row mb-2" id="picked-ram">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.3.1.0.img}}" class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.3.1.0.name}}</p>
+                                <div class="input-group" style="width:150px">
+                                    <button class="btn btn-danger" type="button" id="ram-btn-dec-picked" value="0" {% if picked_pc.3.1|length == 1 %} {{disabled}} {%endif%}>
+                                        <i class="fas fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" class="form-control" value="{{picked_pc.3.1|length}}" disabled id="picked-ramquanity">
+                                    <button class="btn btn-success" type="button" id="ram-btn-inc-picked" value="0">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse mt-2" id="picked-ramdetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Brand</th>
+                                                <td class="col-6">{{picked_pc.3.1.0.brand}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Benchmark</th>
+                                                <td>{{picked_pc.3.1.0.bench}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Memory type</th>
+                                                <td>{{picked_pc.3.1.0.memory_type}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Quantity</th>
+                                                <td>{{picked_pc.3.1.0.quantity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Size</th>
+                                                <td>{{picked_pc.3.1.0.size}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end py-2">
+                                <p class="text-danger mb-0" id="picked-ramprice" value="{{picked_pc.3.1.0.price}}">{{picked_pc.3.1.0.price}}</p>
+                                <p class="mb-0 "><strong>Total: </strong><span id="picked-totalramprice" class="text-danger">{{picked_pc.3.1|length|mul:picked_pc.3.1.0.price}}</span></p>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-ramdetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="picked-ramremove" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>5. SSD {{ ssd }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="ssdform">
+                        {% csrf_token %}
+                        {{ ssd_form|crispy  }}
+                        <div class="d-flex justify-content-evenly">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                            <input type="button" class="btn btn-grad-remove" value="Remove All" id="remove_ssd" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="ssd_slot">
+                        {% if picked_pc and picked_pc.4.1.0 %}
+                        <div class="row mb-2" id="picked-ssd">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.4.1.0.img}}" class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.4.1.0.name}}</p>
+                                <div class="input-group" style="width:150px">
+                                    <button class="btn btn-danger" type="button" id="ssd-btn-dec-picked" value="0">
+                                        <i class="fas fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" class="form-control" value="{{picked_pc.4.1|length}}" disabled id="picked-ssdquanity">
+                                    <button class="btn btn-success" type="button" id="ssd-btn-inc-picked" value="0">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse mt-2" id="picked-ssddetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Benchmark</th>
+                                                <td class="col-6">{{picked_pc.4.1.0.bench}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Capacity</th>
+                                                <td>{{picked_pc.4.1.0.capacity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Unit</th>
+                                                <td>{{picked_pc.4.1.0.unit}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end py-2">
+                                <p class="text-danger mb-0" id="picked-ssdprice" value="{{picked_pc.4.1.0.0.price}}">{{picked_pc.4.1.0.price}}</p>
+                                <p class="mb-0 "><strong>Total: </strong><span id="picked-totalssdprice" class="text-danger">{{picked_pc.4.1|length|mul:picked_pc.4.1.0.price}}</span></p>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-ssddetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="picked-ssdremove" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>6. HDD {{ hdd }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="hddform">
+                        {% csrf_token %}
+                        {{ hdd_form|crispy  }}
+                        <div class="d-flex justify-content-evenly">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                            <input type="button" class="btn btn-grad-remove" value="Remove All" id="remove_hdd" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="hdd_slot">
+                        {% if picked_pc and picked_pc.5.1.0 %}
+                        <div class="row mb-2" id="picked-hdd">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.5.1.0.img}}" class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.5.1.0.name}}</p>
+                                <div class="input-group" style="width:150px">
+                                    <button class="btn btn-danger" type="button" id="hdd-btn-dec-picked" value="0" >
+                                        <i class="fas fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" class="form-control" value="{{picked_pc.5.1|length}}" disabled id="picked-hddquanity">
+                                    <button class="btn btn-success" type="button" id="hdd-btn-inc-picked" value="0">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse mt-2" id="picked-hdddetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Benchmark</th>
+                                                <td class="col-6">{{picked_pc.5.1.0.bench}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Capacity</th>
+                                                <td>{{picked_pc.5.1.0.capacity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Unit</th>
+                                                <td>{{picked_pc.5.1.0.unit}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto text-end py-2">
+                                <p class="text-danger mb-0" id="picked-hddprice" value="{{picked_pc.5.1.0.price}}">{{picked_pc.5.1.0.price}}</p>
+                                <p class="mb-0 "><strong>Total: </strong><span id="picked-totalhddprice" class="text-danger">{{picked_pc.5.1|length|mul:picked_pc.5.1.0.price}}</span></p>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-hdddetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="picked-hddremove" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>7. PSU {{ psu }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="psuform">
+                        {% csrf_token %}
+                        {{ psu_form|crispy  }}
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="psu_slot">
+                        {% if picked_pc and picked_pc.6.1 %}
+                        <div class="row mb-2" id="picked-psu">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.6.1.img}}"
+                                     class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.6.1.name}}</p>
+                                <div class="collapse mt-2" id="picked-psudetail">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="col-6">Efficient rating</th>
+                                                <td class="col-6">
+                                                    {% for k, v in picked_pc.6.1.items %}
+                                                    {% if k == "efficient rating" %}
+                                                    {{v}}
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Wattage</th>
+                                                <td>{{picked_pc.6.1.wattage}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Protection</th>
+                                                <td>{{picked_pc.6.1.protection}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Modularity</th>
+                                                <td>{{picked_pc.6.1.modularity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Form factor</th>
+                                                <td>
+                                                    {% for k, v in picked_pc.6.1.items %}
+                                                    {% if k == "form factor" %}
+                                                    {{v}}
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-end py-2">
+                                <span class="text-danger" id="picked-psuprice">{{picked_pc.6.1.price}}</span>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-psudetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="remove_psu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 border-top border-bottom">
+            <h3>8. CASE {{ case }}</h3>
+            <div class="row ">
+                <div class="col-3 border-end">
+                    <form id="caseform">
+                        {% csrf_token %}
+                        {{ case_form|crispy  }}
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-grad-info" value="Search" data-bs-toggle="modal" data-bs-target="#search-result">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex align-items-center">
+                    <div class="container-fluid" id="case_slot">
+                        {% if picked_pc and picked_pc.7.1 %}
+                        <div class="row mb-2" id="picked-case">
+                            <div class="col-auto">
+                                <img src="{{picked_pc.7.1.img}}"
+                                     class="img-fluid" alt="..." style="width:150px; height:150px;">
+                            </div>
+                            <div class="col py-2">
+                                <p class="fs-5 fw-bold">{{picked_pc.7.1.name}}</p>
+                                <div class="collapse mt-2" id="picked-casedetail">
+                                    <table class="table">
+                                        <tbody>
+                                        {% if picked_pc.7.1.case_type %}
+                                            <tr>
+                                                <th scope="row" class="col-6">Case type</th>
+                                                <td class="col-6">{{picked_pc.7.1.case_type}}</td>
+                                            </tr>
+                                        {% endif %}
+                                            <tr>
+                                                <th scope="row" class="col-6">Board supported</th>
+                                                <td class="col-6">{{picked_pc.7.1.board_supported}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-end py-2">
+                                <span class="text-danger" id="picked-caseprice">{{picked_pc.7.1.price}}</span>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#picked-casedetail" aria-expanded="false" >
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-auto d-flex justify-content-center py-2">
+                                <div>
+                                    <button type="button" id="remove_case" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-4 py-3 ">
+            <div class="row justify-content-end">
+                <div class="col-2 border-top border-bottom py-2 d-flex align-items-center" >
+                    <h4 class="m-0">Total price</h4>
+                </div>
+                <div class="col-2 border-top border-bottom py-2 d-flex justify-content-end align-items-center">
+                    <span id="price" class="text-right text-danger fw-bold h4">
+                        {% if picked_pc %} {{picked_pc.8.1.value}} {%endif%}
+                    </span>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center mb-5">
+            <div class="col-auto">
+                <a href="{% url 'build:pc_detail' %}?index=0" class="btn btn-grad-success" id="detail-page-btn">Show detailed information</a>
+            </div>
+        </div>
+
+<!--        MODAL SEARCH-->
+        <div class="modal fade" id="search-result" tabindex="-1" aria-labelledby="search results" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <p id="result" class="px-3"></p>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Component</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="comp">
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-grad-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--        MODAL CONFIRM-->
+        <div class="modal fade" id="modal-confirm-remove" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal confirm remove" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="remove-confirm-label">Remove</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="remove-confirm-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="confirm-remove-button" value="0">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+<!--        picked price fixed format-->
+        <script>
+
+            $(window).on('load', function() {
+                if (!$.trim( $('#ram_slot').html()).length) {
+                    $('#remove_ram').hide();
+                }
+                if (!$.trim( $('#ssd_slot').html() ).length) {
+                    $('#remove_ssd').hide();
+                }
+                if (!$.trim( $('#hdd_slot').html() ).length) {
+                    $('#remove_hdd').hide();
+                }
+                if ($("#picked-cpuprice").length) {
+                    $("#picked-cpuprice").text(priceFormatter.format(Number($("#picked-cpuprice").text())));
+                }
+                if ($("#picked-boardprice").length) {
+                    $("#picked-boardprice").text(priceFormatter.format(Number($("#picked-boardprice").text())));
+                }
+                if ($("#picked-gpuprice").length) {
+                    $("#picked-gpuprice").text(priceFormatter.format(Number($("#picked-gpuprice").text())));
+                }
+                if ($("#picked-ramprice").length) {
+                    $("#picked-ramprice").text(priceFormatter.format(Number($("#picked-ramprice").text())));
+                    $("#picked-totalramprice").text(priceFormatter.format(Number($("#picked-totalramprice").text())));
+                    $('#ram-btn-inc-picked').click(function() {
+                        fetch('http://127.0.0.1:8000/demo/adjust_ram/', {
+                            method: 'POST',
+                            body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                            headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                            mode: 'same-origin',
+                        })
+                        .then(re => re.json())
+                        .then(data => {
+                            JSON.stringify(data);
+                            if (data.stat == 1) {
+                                alert(data.mess);
+                            }
+                            else {
+                                $('#picked-ramquanity').attr('value', Number($('#picked-ramquanity').attr('value')) + 1);
+                                $('#picked-totalramdprice').text(priceFormatter.format(data.price_r));
+                                $("#price").text(priceFormatter.format(Number(data.price)));
+                            }
+                        });
+                    });
+                    $('#ram-btn-dec-picked').click(function() {
+                        if ($('#picked-ramquanity').attr('value') > 1) {
+                            fetch('http://127.0.0.1:8000/demo/adjust_ram/', {
+                                method: 'POST',
+                                body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                mode: 'same-origin',
+                            })
+                            .then(re => re.json())
+                            .then(data => {
+                                JSON.stringify(data);
+                                if (data.stat == 1) {
+                                    alert(data.mess);
+                                }
+                                else {
+                                    $('#picked-ramquanity').attr('value', Number($('#picked-ramquanity').attr('value')) - 1);
+                                    $('#picked-totalramdprice').text(priceFormatter.format(data.price_r));
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                }
+                            });
+                        }
+                    });
+                }
+                if ($("#picked-ssdprice").length) {
+                    $("#picked-ssdprice").text(priceFormatter.format(Number($("#picked-ssdprice").text())));
+                    $("#picked-totalssdprice").text(priceFormatter.format(Number($("#picked-totalssdprice").text())));
+                    $('#ssd-btn-inc-picked').click(function() {
+                        fetch('http://127.0.0.1:8000/demo/adjust_ssd/', {
+                            method: 'POST',
+                            body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                            headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                            mode: 'same-origin',
+                        })
+                        .then(re => re.json())
+                        .then(data => {
+                            JSON.stringify(data);
+                            if (data.stat == 1) {
+                                alert(data.mess);
+                            }
+                            else {
+                                $('#picked-ssdquanity').attr('value', Number($('#picked-ssdquanity').attr('value')) + 1);
+                                $('#picked-totalssdprice').text(priceFormatter.format(data.price_r));
+                                $("#price").text(priceFormatter.format(Number(data.price)));
+
+                            }
+                        });
+                    });
+                    $('#ssd-btn-dec-picked').click(function() {
+                        if ($('#picked-ssdquanity').attr('value') > 1) {
+                            fetch('http://127.0.0.1:8000/demo/adjust_ssd/', {
+                                method: 'POST',
+                                body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                mode: 'same-origin',
+                            })
+                            .then(re => re.json())
+                            .then(data => {
+                                JSON.stringify(data);
+                                if (data.stat == 1) {
+                                    alert(data.mess);
+                                }
+                                else {
+                                    $('#picked-ssdquanity').attr('value', Number($('#picked-ssdquanity').attr('value')) - 1);
+                                    $('#picked-totalssdprice').text(priceFormatter.format(data.price_r));
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                }
+                            });
+                        }
+                    });
+                }
+                if ($("#picked-hddprice").length) {
+                    $("#picked-hddprice").text(priceFormatter.format(Number($("#picked-hddprice").text())));
+                    $("#picked-totalhddprice").text(priceFormatter.format(Number($("#picked-totalhddprice").text())));
+                    $('#hdd-btn-inc-picked').click(function() {
+                        fetch('http://127.0.0.1:8000/demo/adjust_hdd/', {
+                            method: 'POST',
+                            body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                            headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                            mode: 'same-origin',
+                        })
+                        .then(re => re.json())
+                        .then(data => {
+                            JSON.stringify(data);
+                            if (data.stat == 1) {
+                                alert(data.mess);
+                            }
+                            else {
+                                $('#picked-hddquanity').attr('value', Number($('#picked-hddquanity').attr('value')) + 1);
+                                $('#picked-totalhddprice').text(priceFormatter.format(data.price_r));
+                                $("#price").text(priceFormatter.format(Number(data.price)));
+                            }
+                        });
+                    });
+                    $('#hdd-btn-dec-picked').click(function() {
+                        if ($('#picked-hddquanity').attr('value') > 1) {
+                            fetch('http://127.0.0.1:8000/demo/adjust_hdd/', {
+                                method: 'POST',
+                                body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                mode: 'same-origin',
+                            })
+                            .then(re => re.json())
+                            .then(data => {
+                                JSON.stringify(data);
+                                if (data.stat == 1) {
+                                    alert(data.mess);
+                                }
+                                else {
+                                    $('#picked-hddquanity').attr('value', Number($('#picked-hddquanity').attr('value')) - 1);
+                                    $('#picked-totalhddprice').text(priceFormatter.format(data.price_r));
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                }
+                            });
+                        }
+                    });
+                }
+                if ($("#picked-psuprice").length) {
+                    $("#picked-psuprice").text(priceFormatter.format(Number($("#picked-psuprice").text())));
+                }
+                if ($("#picked-caseprice").length) {
+                    $("#picked-caseprice").text(priceFormatter.format(Number($("#picked-caseprice").text())));
+                }
+                if ($("#price").text()) {
+                    $("#price").text(priceFormatter.format(Number($("#price").text())));
+                }
+                if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                    $('#detail-page-btn').hide();
+                }
+                else {
+                    $('#detail-page-btn').show();
+                }
+            });
+        </script>
+<!--        remove picked part-->
+        <script>
+            $('#remove_cpu').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this CPU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_cpu/',{
+                        method: 'POST',
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $('#cpu_slot').empty();
+                        $('#detail-page-btn').hide();
+                    });
+                })
+            });
+            $('#remove_board').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this mainboard?</br>This will also remove all your selected RAM, SSD, HDD and case, if any.</p>'
+                + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_board/',{
+                        method: 'POST',
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $('#board_slot').empty();
+                        $("#ram_slot, #ssd_slot, #hdd_slot, #case_slot").empty();
+                        $("#remove_ram, #remove_ssd, #remove_hdd").hide();
+                        $('#detail-page-btn').hide();
+                    });
+                });
+            });
+            $('#remove_gpu').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this GPU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_gpu/',{
+                        method: 'POST',
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $('#gpu_slot').empty();
+                        $('#detail-page-btn').hide();
+                    });
+                });
+            });
+            $('#picked-ramremove').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this RAM?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    $('#picked-ram').remove();
+                    fetch('http://127.0.0.1:8000/demo/remove_ram/', {
+                        method: 'POST',
+                        body: JSON.stringify( {'index': -1} ),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $("#remove_ram").hide();
+                        $("#ram_slot").empty();
+                        $('#detail-page-btn').hide();
+                    });
+                });
+            });
+            $('#picked-ssdremove').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this SSD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').click(function () {
+                    $('#picked-ssd').remove();
+                    fetch('http://127.0.0.1:8000/demo/remove_ssd/', {
+                        method: 'POST',
+                        body: JSON.stringify({'index': -1}),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                        .then(re => re.json())
+                        .then(data => {
+                            JSON.stringify(data);
+                            $("#price").text(priceFormatter.format(Number(data.price)));
+                            $("#remove_ssd").hide();
+                            $("#ssd_slot").empty();
+                            if ($('#hdd_slot').is(':empty')) {
+                                $('#detail-page-btn').hide();
+                            }
+                        });
+                });
+            });
+            $('#picked-hddremove').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this HDD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    $('#picked-hdd').remove();
+                    fetch('http://127.0.0.1:8000/demo/remove_hdd/', {
+                        method: 'POST',
+                        body: JSON.stringify( {'index': -1} ),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $("#remove_hdd").hide();
+                        $("#hdd_slot").empty();
+                        if ($('#ssd_slot').is(':empty')) {
+                            $('#detail-page-btn').hide();
+                        }
+                    });
+                });
+            });
+            $('#remove_psu').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this PSU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_psu/',{
+                        method: 'POST',
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $('#psu_slot').empty();
+                        $('#detail-page-btn').hide();
+                    });
+                });
+            });
+            $('#remove_case').click(function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this case?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');;
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_case/',{
+                        method: 'POST',
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $('#case_slot').empty();
+                    });
+                });
+            });
+        </script>
+<!--        remove all ram, ssd, hdd-->
+        <script>
+            document.querySelector('#remove_ram').onclick = function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove all of the selected RAM?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_ram/', {
+                        method: 'POST',
+                        body: JSON.stringify( {'index': -1} ),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $("#remove_ram").hide();
+                        $("#ram_slot").empty();
+                        $('#detail-page-btn').hide();
+                    });
+                });
+            };
+
+            document.querySelector('#remove_ssd').onclick = function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove all of the selected SSD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_ssd/', {
+                        method: 'POST',
+                        body: JSON.stringify( {'index': -1} ),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $("#remove_ssd").hide();
+                        $("#ssd_slot").empty();
+                        if (!$.trim( $('#hdd_slot').html() ).length) {
+                            $('#detail-page-btn').hide();
+                        }
+                    });
+                });
+            };
+
+            document.querySelector('#remove_hdd').onclick = function() {
+                $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove all of the selected HDD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                $('#confirm-remove-button').unbind('click').click(function() {
+                    fetch('http://127.0.0.1:8000/demo/remove_hdd/', {
+                        method: 'POST',
+                        body: JSON.stringify( {'index': -1} ),
+                        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                        mode: 'same-origin',
+                    })
+                    .then(re => re.json())
+                    .then(data => {
+                        JSON.stringify(data);
+                        $("#price").text(priceFormatter.format(Number(data.price)));
+                        $("#remove_hdd").hide();
+                        $("#hdd_slot").empty();
+                        if (!$.trim( $('#ssd_slot').html() ).length) {
+                            $('#detail-page-btn').hide();
+                        }
+                    });
+                });
+            };
+        </script>
+        <!-- cpu -->
+        <script>
+            const cpu = document.getElementById('cpuform');
+            cpu.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_cpu/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        $("#comp").empty();
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_cpu/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#cpu_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    let newcpurow = $('<div class="row mb-2"></div>');
+
+                                    let newcpuimgcol = $('<div class="col-auto"></col>');
+                                    let newcpuimg = $('<img src="'+ data.item.img +'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                    newcpuimgcol.append(newcpuimg);
+
+                                    let newcpuitem = $('<div class="col py-2"></col>');
+                                    let newcpuname = $('<p class="fs-5 fw-bold"></p>').text(data.item.brand + ' ' + data.item.name);
+                                    newcpuitem.append(newcpuname);
+
+                                    let detail = $('<div id="cpu" class="collapse mt-2"></div>');
+                                    let table = $('<table class="table"></table>');
+                                    let tbody = $('<tbody> \
+                                        <tr> \
+                                            <th scope="row" class="col-6">Brand</th> \
+                                            <td class="col-6">'+data.item.brand+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Benchmark</th> \
+                                            <td>'+data.item.bench+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Processor number</th> \
+                                            <td>'+data.item.processor_number +'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Max memory size</th> \
+                                            <td>'+data.item.max_memory_sizer+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Memory type</th> \
+                                            <td>'+data.item.memory_type+'</td> \
+                                        </tr> \
+                                        <tr class=""> \
+                                            <th scope="row">Socket supported</th> \
+                                            <td>'+data.item.socket_supported+'</td> \
+                                        </tr> \
+                                    </tbody>');
+
+                                    table.append(tbody);
+                                    detail.append(table)
+                                    newcpuitem.append(detail);
+
+                                    let newcpupricecol = $('<div class="col-auto d-flex justify-content-end py-2"></div>');
+                                    let newcpuprice = $('<span class="text-danger"></span>').text(priceFormatter.format(Number(data.item.price)));
+                                    newcpupricecol.append(newcpuprice);
+
+                                    let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                        data-bs-toggle="collapse" \
+                                        data-bs-target="#cpu" \
+                                        aria-expanded="false" \
+                                        aria-controls="cpu"> \
+                                        <i class="fas fa-caret-down"></i></button></div>');
+                                    newdropdowncol.append(buttoncollapse);
+
+                                    let newcpuremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let tempdiv = $('<div></div');
+                                    let newcpuremovebtn = $('<button type="button" id="remove_cpu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>');
+
+                                    tempdiv.append(newcpuremovebtn);
+                                    newcpuremovecol.append(tempdiv);
+
+                                    newcpurow.append(newcpuimgcol, newcpuitem, newcpupricecol, newdropdowncol, newcpuremovecol);
+                                    $("#cpu_slot").append(newcpurow);
+
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+
+                                    $('#remove_cpu').click(function() {
+                                        $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this CPU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                        $('#confirm-remove-button').unbind('click').click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/remove_cpu/',{
+                                                method: 'POST',
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                $("#price").text(priceFormatter.format(Number(data.price)));
+                                                $('#cpu_slot').empty();
+                                                $('#detail-page-btn').hide();
+                                            });
+                                        });
+                                    });
+
+                                });
+                            };
+
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let newp = $('<p></p>');
+                            newp.append('<strong>Brand: </strong>');
+
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- board -->
+        <script>
+            const board = document.getElementById('boardform');
+            board.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_board/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        $("#comp").empty();
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        $("#result").append($('<p><strong>Note: </strong>If you have already selected a mainboard, selecting a new mainboard will result in removing selected RAM, SSD, HDD and case if any.</p>'))
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_board/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#board_slot").empty();
+                                    $("#remove_ram, #remove_ssd, #remove_hdd").hide();
+                                    $("#ram_slot, #ssd_slot, #hdd_slot, #case_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    let newboardrow = $('<div class="row mb-2"></div>');
+
+                                    let newboardimgcol = $('<div class="col-auto"></col>');
+                                    let newboardimg = $('<img src="'+data.item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                    newboardimgcol.append(newboardimg);
+
+                                    let newboarditem = $('<div class="col py-2"></col>');
+                                    let newboardname = $('<p class="fs-5 fw-bold"></p>').text(data.item.name);
+                                    newboarditem.append(newboardname);
+
+                                    let detail = $('<div id="board" class="collapse mt-2"></div>');
+                                    let table = $('<table class="table"></table>');
+                                    let tbody = $('<tbody> \
+                                        <tr> \
+                                            <th scope="row" class="col-6">Socket</th> \
+                                            <td class="col-6">'+data.item.socket+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Chipset</th> \
+                                            <td>'+data.item.chipset+'</td> \
+                                        </tr> \
+                                        <tr>\
+                                            <th scope="row">Memory slot</th> \
+                                            <td>'+data.item.ram_slot+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Memory type</th> \
+                                            <td>'+data.item.memory_type+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Max memory size</th> \
+                                            <td>'+data.item.max_memory_size+'</td> \
+                                        </tr> \
+                                    </tbody>');
+
+                                    table.append(tbody);
+                                    detail.append(table)
+                                    newboarditem.append(detail);
+
+                                    let newboardpricecol = $('<div class="col-auto d-flex justify-content-end py-2"></div>');
+                                    let newboardprice = $('<span class="text-danger"></span>').text(priceFormatter.format(Number(data.item.price)));
+                                    newboardpricecol.append(newboardprice);
+
+                                    let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                        data-bs-toggle="collapse" \
+                                        data-bs-target="#board" \
+                                        aria-expanded="false" \
+                                        aria-controls="board"> \
+                                        <i class="fas fa-caret-down"></i></button></div>');
+                                    newdropdowncol.append(buttoncollapse);
+
+                                    let newboardremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let tempdiv = $('<div></div');
+                                    let newboardremovebtn = $('<button type="button" id="remove_board" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>');
+
+                                    tempdiv.append(newboardremovebtn);
+                                    newboardremovecol.append(tempdiv);
+
+                                    newboardrow.append(newboardimgcol, newboarditem, newboardpricecol, newdropdowncol, newboardremovecol);
+                                    $("#board_slot").append(newboardrow);
+
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+
+                                    $('#remove_board').click(function() {
+                                        $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this mainboard?</br>This action will also remove all of the selected RAM, SSD, HDD and case, if any.</p>'
+                                        + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                        $('#confirm-remove-button').unbind('click').click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/remove_board/', {
+                                                method: 'POST',
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                $("#price").text(priceFormatter.format(Number(data.price)));
+                                                $('#board_slot').empty();
+                                                $("#ram_slot, #ssd_slot, #hdd_slot, #case_slot").empty();
+                                                $("#remove_ram, #remove_ssd, #remove_hdd").hide();
+                                                $('#detail-page-btn').hide();
+                                            });
+                                        });
+                                    });
+
+                                });
+                            };
+
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let newp = $('<p></p>');
+                            newp.append('<strong>Brand: </strong>');
+
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- gpu  -->
+        <script>
+            const gpu = document.getElementById('gpuform');
+            gpu.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_gpu/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        $("#comp").empty();
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_gpu/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#gpu_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    let newgpurow = $('<div class="row mb-2"></div>');
+
+                                    let newgpuimgcol = $('<div class="col-auto"></col>');
+                                    let newgpuimg = $('<img src="'+data.item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                    newgpuimgcol.append(newgpuimg);
+
+                                    let newgpuitem = $('<div class="col py-2"></col>');
+                                    let newgpuname = $('<p class="fs-5 fw-bold"></p>').text(data.item.brand + ' ' + data.item.name);
+                                    newgpuitem.append(newgpuname);
+
+                                    let detail = $('<div id="gpu" class="collapse mt-2"></div>');
+                                    let table = $('<table class="table"></table>');
+                                    let tbody = $('<tbody> \
+                                        <tr> \
+                                            <th scope="row" class="col-6">Brand</th> \
+                                            <td class="col-6">'+data.item.brand+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Benchmark</th> \
+                                            <td>'+data.item.bench+'</td> \
+                                        </tr> \
+                                    </tbody>');
+                                    table.append(tbody);
+                                    detail.append(table)
+                                    newgpuitem.append(detail);
+
+                                    let newgpupricecol = $('<div class="col-auto d-flex justify-content-end py-2"></div>');
+                                    let newgpuprice = $('<span class="text-danger"></span>').text(priceFormatter.format(Number(data.item.price)));
+                                    newgpupricecol.append(newgpuprice);
+
+                                    let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                        data-bs-toggle="collapse" \
+                                        data-bs-target="#gpu" \
+                                        aria-expanded="false" \
+                                        aria-controls="gpu"> \
+                                        <i class="fas fa-caret-down"></i></button></div>');
+                                    newdropdowncol.append(buttoncollapse);
+
+                                    let newgpuremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let tempdiv = $('<div></div');
+                                    let newgpuremovebtn = $('<button type="button" id="remove_gpu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>');
+
+                                    tempdiv.append(newgpuremovebtn);
+                                    newgpuremovecol.append(tempdiv);
+
+                                    newgpurow.append(newgpuimgcol, newgpuitem, newgpupricecol, newdropdowncol, newgpuremovecol);
+                                    $("#gpu_slot").append(newgpurow);
+
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+
+                                    $('#remove_gpu').unbind('click').click(function() {
+                                        $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this GPU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                        $('#confirm-remove-button').unbind('click').click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/remove_gpu/', {
+                                                method: 'POST',
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                $("#price").text(priceFormatter.format(Number(data.price)));
+                                                $('#gpu_slot').empty();
+                                                $('#detail-page-btn').hide();
+                                            });
+                                        });
+                                    });
+
+                                });
+                            };
+
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let newp = $('<p></p>');
+                            newp.append('<strong>Brand: </strong>');
+
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- ram -->
+        <script>
+            const ram = document.getElementById('ramform');
+            ram.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_ram/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    $("#comp").empty();
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_ram/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#ram_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    for (let k = 0; k < data.item.length; k++){
+                                        let newramrow = $('<div class="row mb-2" id="ram-'+k+'"></div>');
+                                        let newramimgcol = $('<div class="col-auto"><img src="'+data.item[k].item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;"></div>');
+                                        let newramitem = $('<div class="col py-2"><p class="fs-5 fw-bold">'+ data.item[k].item.brand + ' ' + data.item[k].item.name+'</p></div>');
+
+                                        let newramquantitydiv = $('<div class="input-group" style="width:150px"> \
+                                            <button class="btn btn-danger ram-btn-dec" type="button" id="ram-btn-dec'+k+'" value="'+k+'"><i class="fas fa-minus"></i></button> \
+                                            <input type="text" class="form-control" placeholder="" disabled value="'+ data.item[k].quantity+'" id="ram-quantity'+k+'"> \
+                                            <button class="btn btn-success ram-btn-inc" type="button" id="ram-btn-inc'+k+'" value="'+k+'"><i class="fas fa-plus"></i></button> \
+                                        </div>');
+                                        newramitem.append(newramquantitydiv);
+
+                                        let detail = $('<div id="ramdetail'+k+'" class="collapse mt-2"></div>');
+                                        let table = $('<table class="table"></table>');
+                                        let tbody = $('<tbody> \
+                                            <tr> \
+                                                <th scope="row" class="col-6">Brand</th> \
+                                                <td class="col-6">'+data.item[k].item.brand+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Benchmark</th> \
+                                                <td>'+data.item[k].item.bench+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Memory type</th> \
+                                                <td>'+data.item[k].item.memory_type+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Quantity</th> \
+                                                <td>'+data.item[k].item.quantity+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Size</th> \
+                                                <td>'+data.item[k].item.size+'</td> \
+                                            </tr> \
+                                        </tbody>');
+
+                                        table.append(tbody);
+                                        detail.append(table)
+                                        newramitem.append(detail);
+
+                                        let newrampricecol = $('<div class="col-auto text-end py-2"></div>');
+                                        let newramprice = $('<p class="text-danger mb-0" value="'+data.item[k].item.price+'" id="ramprice'+k+'"></p>').text(priceFormatter.format(Number(data.item[k].item.price)));
+                                        let totalramprice = Number(data.item[k].item.price) * Number(data.item[k].quantity);
+                                        let newtotalramprice = $('<p class="mb-0 "><strong>Total: </strong><span id="totalramprice-'+k+'" class="text-danger">'+priceFormatter.format(totalramprice)+'</span></p>');
+                                        newrampricecol.append(newramprice, newtotalramprice);
+
+                                        let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                            data-bs-toggle="collapse" \
+                                            data-bs-target="#ramdetail'+k+ '"> \
+                                            <i class="fas fa-caret-down"></i></button></div>');
+                                        newdropdowncol.append(buttoncollapse);
+
+                                        let newramremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let tempdiv = $('<div></div');
+                                        let newramremovebtn = $('<button type="button" id="ram-remove'+k+'" class="btn btn-grad-remove ram-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove" value="'+k+'">Remove</button>');
+
+                                        tempdiv.append(newramremovebtn);
+                                        newramremovecol.append(tempdiv);
+
+                                        newramrow.append(newramimgcol, newramitem, newrampricecol, newdropdowncol, newramremovecol);
+                                        $("#ram_slot").append(newramrow);
+                                        if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                            $('#detail-page-btn').hide();
+                                        }
+                                        else {
+                                            $('#detail-page-btn').show();
+                                        }
+                                        if ($('#remove_ram').is(':hidden')) {$('#remove_ram').show();}
+
+                                        $('#ram-remove'+k).unbind('click').click(function() {
+                                            let button_value = this.value;
+                                            console.log("1: ",button_value);
+                                            $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this RAM?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                            $('#confirm-remove-button').unbind('click').click(function() {
+                                                fetch('http://127.0.0.1:8000/demo/remove_ram/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify( {'index': button_value} ),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    console.log("2: ",button_value);
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    $('#ram-'+button_value).remove();
+                                                    if (!$.trim( $('#ram_slot').html()).length) {
+                                                        $('#remove_ram').hide();
+                                                    }
+                                                    console.log("3: ",button_value);
+                                                    for (let j=Number(button_value+1); j<=data.len; j++) {
+                                                        let jstr = j.toString();
+                                                        $('#ram-'+j).attr('id',"ram-"+(j-1).toString());
+                                                        $('#ram-btn-inc'+jstr).attr('value', (j-1).toString());
+                                                        $('#ram-btn-dec'+jstr).attr('value', (j-1).toString());
+                                                        $('#ram-btn-inc'+jstr).attr('id', (j-1).toString());
+                                                        $('#ram-btn-dec'+jstr).attr('id', (j-1).toString());
+                                                        $('#ram-quantity'+jstr).attr('id', 'ram-quantity' + (j-1).toString());
+                                                        $('#totalramprice-'+jstr).attr('id', 'totalramprice-' + (j-1).toString());
+                                                        $('#ram-remove'+jstr).attr('value', (j-1).toString());
+                                                    }
+                                                    if (!$.trim( $('#ram_slot').html()).length) {
+                                                        $('#detail-page-btn').hide();
+                                                    }
+                                                });
+                                            });
+                                        });
+                                        $('#ram-btn-inc'+k).click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/adjust_ram/', {
+                                                method: 'POST',
+                                                body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                if (data.stat == 1) {
+                                                    alert(data.mess);
+                                                }
+                                                else {
+                                                    $('#ram-quantity'+this.value).attr('value', Number($('#ram-quantity'+this.value).attr('value')) + 1);
+                                                    $('#totalramprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                }
+                                            });
+                                        });
+                                        $('#ram-btn-dec'+k).click(function() {
+                                            if ($('#ram-quantity'+this.value).attr('value') > 1) {
+                                                fetch('http://127.0.0.1:8000/demo/adjust_ram/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    if (data.stat == 1) {
+                                                        alert(data.mess);
+                                                    }
+                                                    else {
+                                                        $('#ram-quantity'+this.value).attr('value', Number($('#ram-quantity'+this.value).attr('value')) - 1);
+                                                        $('#totalramprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                        $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    };
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+                                });
+                            };
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+
+        </script>
+        <!-- ssd -->
+        <script>
+            const ssd = document.getElementById('ssdform');
+            ssd.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_ssd/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    $("#comp").empty();
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_ssd/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#ssd_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    for (i = 0; i < data.item.length; i++){
+                                        let newssdrow = $('<div class="row mb-2" id="ssd-'+i+'"></div>');
+
+                                        let newssdimgcol = $('<div class="col-auto"></col>');
+                                        let newssdimg = $('<img src="'+data.item[i].item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                        newssdimgcol.append(newssdimg);
+
+                                        let newssditem = $('<div class="col py-2"></col>');
+                                        let newssdname = $('<p class="fs-5 fw-bold"></p>').text(data.item[i].item.brand + ' ' + data.item[i].item.name);
+                                        newssditem.append(newssdname);
+
+                                        let newssdquantitydiv = $('<div class="input-group" style="width:150px"> \
+                                            <button class="btn btn-danger ssd-btn-dec" type="button" id="ssd-btn-dec'+i+'" value="'+i+'"><i class="fas fa-minus"></i></button> \
+                                            <input type="text" class="form-control" placeholder="" disabled value="'+ data.item[i].quantity+'" id="ssd-quantity'+i+'"> \
+                                            <button class="btn btn-success ssd-btn-inc" type="button" id="ssd-btn-inc'+i+'" value="'+i+'"><i class="fas fa-plus"></i></button> \
+                                        </div>');
+                                        newssditem.append(newssdquantitydiv);
+
+                                        let detail = $('<div id="ssddetail'+i+'" class="collapse mt-2"></div>');
+                                        let table = $('<table class="table"></table>');
+                                        let tbody = $('<tbody> \
+                                            <tr> \
+                                                <th scope="row" class="col-6">Benchmark</th> \
+                                                <td class="col-6">'+data.item[i].item.bench+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Capacity</th> \
+                                                <td>'+data.item[i].item.capacity+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Unit</th> \
+                                                <td>'+data.item[i].item.unit+'</td> \
+                                            </tr> \
+                                        </tbody>');
+
+                                        table.append(tbody);
+                                        detail.append(table)
+                                        newssditem.append(detail);
+
+                                        let newssdpricecol = $('<div class="col-auto text-end py-2"></div>');
+                                        let newssdprice = $('<p class="text-danger mb-0" value="'+data.item[i].item.price+'" id="ssdprice'+i+'"></p>').text(priceFormatter.format(Number(data.item[i].item.price)));
+                                        let totalssdprice = Number(data.item[i].item.price) * Number(data.item[i].quantity);
+                                        let newtotalssdprice = $('<p class="mb-0 "><strong>Total: </strong><span id="totalssdprice-'+i+'" class="text-danger">'+priceFormatter.format(totalssdprice)+'</span></p>');
+                                        newssdpricecol.append(newssdprice, newtotalssdprice);
+
+                                        let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                            data-bs-toggle="collapse" \
+                                            data-bs-target="#ssddetail'+i+ '" \
+                                            aria-expanded="false" \
+                                            aria-controls="ssddetail'+i+'"> \
+                                            <i class="fas fa-caret-down"></i></button></div>');
+                                        newdropdowncol.append(buttoncollapse);
+
+                                        let newssdremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let tempdiv = $('<div></div');
+                                        let newssdremovebtn = $('<button type="button" id="ssd-remove'+i+'" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove" value="'+i+'">Remove</button>');
+
+                                        tempdiv.append(newssdremovebtn);
+                                        newssdremovecol.append(tempdiv);
+
+                                        newssdrow.append(newssdimgcol, newssditem, newssdpricecol, newdropdowncol, newssdremovecol);
+                                        $("#ssd_slot").append(newssdrow);
+                                        if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                            $('#detail-page-btn').hide();
+                                        }
+                                        else {
+                                            $('#detail-page-btn').show();
+                                        }
+                                        if ($('#remove_ssd').is(':hidden')) {$('#remove_ssd').show();}
+
+                                        $('#ssd-remove'+i).unbind('click').click(function() {
+                                            let button_value = this.value;
+                                            $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this SSD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                            $('#confirm-remove-button').unbind('click').click(function() {
+                                                fetch('http://127.0.0.1:8000/demo/remove_ssd/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify( {'index': button_value} ),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    $('#ssd-'+ button_value).remove();
+                                                    if (!$.trim( $('#ssd_slot').html()).length) {
+                                                       $('#remove_ssd').hide();
+                                                    }
+
+                                                    for (let j=Number(this.value+1); j<=data.len; j++) {
+                                                        let jstr = j.toString();
+                                                        $('#ssd-'+j).attr('id',"ssd-"+(j-1).toString());
+                                                        $('#ssd-btn-inc'+jstr).attr('value', (j-1).toString());
+                                                        $('#ssd-btn-dec'+jstr).attr('value', (j-1).toString());
+                                                        $('#ssd-btn-inc'+jstr).attr('id', (j-1).toString());
+                                                        $('#ssd-btn-dec'+jstr).attr('id', (j-1).toString());
+                                                        $('#ssd-quantity'+jstr).attr('id', 'ssd-quantity' + (j-1).toString());
+                                                        $('#totalssdprice-'+jstr).attr('id', 'totalssdprice-' + (j-1).toString());
+                                                        $('#ssd-remove'+jstr).attr('value', (j-1).toString());
+                                                    }
+                                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                                        $('#detail-page-btn').hide();
+                                                    }
+                                                    else {
+                                                        $('#detail-page-btn').show();
+                                                    }
+                                                });
+                                            });
+                                        });
+
+                                        $('#ssd-btn-inc'+i).click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/adjust_ssd/', {
+                                                method: 'POST',
+                                                body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                if (data.stat == 1) {
+                                                    alert(data.mess);
+                                                }
+                                                else {
+                                                    $('#ssd-quantity'+this.value).attr('value', Number($('#ssd-quantity'+this.value).attr('value')) + 1);
+                                                    $('#totalssdprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                }
+                                            });
+                                        });
+                                        $('#ssd-btn-dec'+i).click(function() {
+                                            if ($('#ssd-quantity'+this.value).attr('value') > 1) {
+                                                fetch('http://127.0.0.1:8000/demo/adjust_ssd/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    if (data.stat == 1) {
+                                                        alert(data.mess);
+                                                    }
+                                                    else {
+                                                        $('#ssd-quantity'+this.value).attr('value', Number($('#ssd-quantity'+this.value).attr('value')) - 1);
+                                                        $('#totalssdprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                        $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    };
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+                                });
+                            };
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- hdd -->
+        <script>
+            const hdd = document.getElementById('hddform');
+            hdd.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_hdd/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    $("#comp").empty();
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_hdd/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#hdd_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    for (i = 0; i < data.item.length; i++){
+                                        let newhddrow = $('<div class="row mb-2" id="hdd-'+i+'"></div>');
+
+                                        let newhddimgcol = $('<div class="col-auto"></col>');
+                                        let newhddimg = $('<img src="'+data.item[i].item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                        newhddimgcol.append(newhddimg);
+
+                                        let newhdditem = $('<div class="col py-2"></col>');
+                                        let newhddname = $('<p class="fs-5 fw-bold"></p>').text(data.item[i].item.brand + ' ' + data.item[i].item.name);
+                                        newhdditem.append(newhddname);
+
+                                        let newhddquantitydiv = $('<div class="input-group" style="width:150px"> \
+                                            <button class="btn btn-danger hdd-btn-dec" type="button" id="hdd-btn-dec'+i+'" value="'+i+'"><i class="fas fa-minus"></i></button> \
+                                            <input type="text" class="form-control" placeholder="" disabled value="'+ data.item[i].quantity+'" id="hdd-quantity'+i+'"> \
+                                            <button class="btn btn-success hdd-btn-inc" type="button" id="hdd-btn-inc'+i+'" value="'+i+'"><i class="fas fa-plus"></i></button> \
+                                        </div>');
+                                        newhdditem.append(newhddquantitydiv);
+
+                                        let detail = $('<div id="hdddetail'+i+'" class="collapse mt-2"></div>');
+                                        let table = $('<table class="table"></table>');
+                                        let tbody = $('<tbody> \
+                                            <tr> \
+                                                <th scope="row" class="col-6">Benchmark</th> \
+                                                <td class="col-6">'+data.item[i].item.bench+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Capacity</th> \
+                                                <td>'+data.item[i].item.capacity+'</td> \
+                                            </tr> \
+                                            <tr> \
+                                                <th scope="row">Unit</th> \
+                                                <td>'+data.item[i].item.unit+'</td> \
+                                            </tr> \
+                                        </tbody>');
+                                        table.append(tbody);
+                                        detail.append(table)
+                                        newhdditem.append(detail);
+
+                                        let newhddpricecol = $('<div class="col-auto text-end py-2"></div>');
+                                        let newhddprice = $('<p class="text-danger mb-0" value="'+data.item[i].item.price+'" id="hddprice'+i+'"></p>').text(priceFormatter.format(Number(data.item[i].item.price)));
+                                        let totalhddprice = Number(data.item[i].item.price) * Number(data.item[i].quantity);
+                                        let newtotalhddprice = $('<p class="mb-0 "><strong>Total: </strong><span id="totalhddprice-'+i+'" class="text-danger">'+priceFormatter.format(totalhddprice)+'</span></p>');
+                                        newhddpricecol.append(newhddprice, newtotalhddprice);
+
+                                        let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                            data-bs-toggle="collapse" \
+                                            data-bs-target="#hdddetail'+i+ '" \
+                                            aria-expanded="false" \
+                                            aria-controls="hdddetail'+i+'"> \
+                                            <i class="fas fa-caret-down"></i></button></div>');
+                                        newdropdowncol.append(buttoncollapse);
+
+                                        let newhddremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                        let tempdiv = $('<div></div');
+                                        let newhddremovebtn = $('<button type="button" id="hdd-remove'+i+'" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove" value="'+i+'">Remove</button>');
+
+                                        tempdiv.append(newhddremovebtn);
+                                        newhddremovecol.append(tempdiv);
+
+                                        newhddrow.append(newhddimgcol, newhdditem, newhddpricecol, newdropdowncol, newhddremovecol);
+                                        $("#hdd_slot").append(newhddrow);
+                                        if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                            $('#detail-page-btn').hide();
+                                        }
+                                        else {
+                                            $('#detail-page-btn').show();
+                                        }
+                                        if ($('#remove_hdd').is(':hidden')) {$('#remove_hdd').show();}
+
+                                        $('#hdd-remove'+i).unbind('click').click(function() {
+                                            let button_value = this.value;
+                                            $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this HDD?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                            $('#confirm-remove-button').unbind('click').click(function() {
+                                                fetch('http://127.0.0.1:8000/demo/remove_hdd/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify( {'index': button_value} ),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    $('#hdd-'+button_value).remove();
+                                                    if (!$.trim( $('#hdd_slot').html()).length) {
+                                                       $('#remove_hdd').hide();
+                                                    }
+
+                                                    for (let j=Number(this.value+1); j<=data.len; j++) {
+                                                        let jstr = j.toString();
+                                                        $('#hdd-'+j).attr('id',"hdd-"+(j-1).toString());
+                                                        $('#hdd-btn-inc'+jstr).attr('value', (j-1).toString());
+                                                        $('#hdd-btn-dec'+jstr).attr('value', (j-1).toString());
+                                                        $('#hdd-btn-inc'+jstr).attr('id', (j-1).toString());
+                                                        $('#hdd-btn-dec'+jstr).attr('id', (j-1).toString());
+                                                        $('#hdd-quantity'+jstr).attr('id', 'hdd-quantity' + (j-1).toString());
+                                                        $('#totalhddprice-'+jstr).attr('id', 'totalhddprice-' + (j-1).toString());
+                                                        $('#hdd-remove'+jstr).attr('value', (j-1).toString());
+                                                    }
+                                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                                        $('#detail-page-btn').hide();
+                                                    }
+                                                    else {
+                                                        $('#detail-page-btn').show();
+                                                    }
+                                                });
+                                            });
+                                        });
+
+                                        $('#hdd-btn-inc'+i).click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/adjust_hdd/', {
+                                                method: 'POST',
+                                                body: JSON.stringify(  {'index':  this.value, 'op':  'a'}),
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                if (data.stat == 1) {
+                                                    alert(data.mess);
+                                                }
+                                                else {
+                                                    $('#hdd-quantity'+this.value).attr('value', Number($('#hdd-quantity'+this.value).attr('value')) + 1);
+                                                    $('#totalhddprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                                }
+                                            });
+                                        });
+                                        $('#hdd-btn-dec'+i).click(function() {
+                                            if ($('#hdd-quantity'+this.value).attr('value') > 1) {
+                                                fetch('http://127.0.0.1:8000/demo/adjust_hdd/', {
+                                                    method: 'POST',
+                                                    body: JSON.stringify(  {'index':  this.value, 'op':  's'}),
+                                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                    mode: 'same-origin',
+                                                })
+                                                .then(re => re.json())
+                                                .then(data => {
+                                                    JSON.stringify(data);
+                                                    if (data.stat == 1) {
+                                                        alert(data.mess);
+                                                    }
+                                                    else {
+                                                        $('#hdd-quantity'+this.value).attr('value', Number($('#hdd-quantity'+this.value).attr('value')) - 1);
+                                                        $('#totalhddprice-'+this.value).text(priceFormatter.format(data.price_r));
+                                                        $("#price").text(priceFormatter.format(Number(data.price)));
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    };
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                });
+                            };
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- psu -->
+        <script>
+            const psu = document.getElementById('psuform');
+            psu.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_psu/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        $("#comp").empty();
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_psu/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#psu_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    let newpsurow = $('<div class="row mb-2"></div>');
+
+                                    let newpsuimgcol = $('<div class="col-auto"></col>');
+                                    let newpsuimg = $('<img src="'+data.item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                    newpsuimgcol.append(newpsuimg);
+
+                                    let newpsuitem = $('<div class="col py-2"></col>');
+                                    let newpsuname = $('<p class="fs-5 fw-bold"></p>').text(data.item.brand + ' ' + data.item.name);
+                                    newpsuitem.append(newpsuname);
+
+                                    let detail = $('<div id="psu" class="collapse mt-2"></div>');
+                                    let table = $('<table class="table"></table>');
+                                    let tbody = $('<tbody> \
+                                        <tr> \
+                                            <th scope="row" class="col-6">Efficient rating</th> \
+                                            <td class="col-6">'+data.item['efficient rating']+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Wattage</th> \
+                                            <td>'+data.item.wattage+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Protection</th> \
+                                            <td>'+data.item.protection+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Modularity</th> \
+                                            <td>'+data.item.modularity+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Form factor</th> \
+                                            <td>'+data.item['form factor']+'</td> \
+                                        </tr> \
+                                    </tbody>');
+                                    table.append(tbody);
+                                    detail.append(table)
+                                    newpsuitem.append(detail);
+
+                                    let newpsupricecol = $('<div class="col-auto d-flex justify-content-end py-2"></div>');
+                                    let newpsuprice = $('<span class="text-danger"></span>').text(priceFormatter.format(Number(data.item.price)));
+                                    newpsupricecol.append(newpsuprice);
+
+                                    let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                        data-bs-toggle="collapse" \
+                                        data-bs-target="#psu" \
+                                        aria-expanded="false" \
+                                        aria-controls="psu"> \
+                                        <i class="fas fa-caret-down"></i></button></div>');
+                                    newdropdowncol.append(buttoncollapse);
+
+                                    let newpsuremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let tempdiv = $('<div></div');
+                                    let newpsuremovebtn = $('<button type="button" id="remove_psu" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>');
+
+                                    tempdiv.append(newpsuremovebtn);
+                                    newpsuremovecol.append(tempdiv);
+
+                                    newpsurow.append(newpsuimgcol, newpsuitem, newpsupricecol, newdropdowncol, newpsuremovecol);
+                                    $("#psu_slot").append(newpsurow);
+
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+                                    if( !$.trim( $('#cpu_slot').html() ).length || !$.trim( $('#board_slot').html() ).length || !$.trim( $('#gpu_slot').html() ).length || !$.trim( $('#ram_slot').html() ).length || (!$.trim( $('#ssd_slot').html() ).length && !$.trim( $('#hdd_slot').html() ).length) || !$.trim( $('#psu_slot').html() ).length ){
+                                        $('#detail-page-btn').hide();
+                                    }
+                                    else {
+                                        $('#detail-page-btn').show();
+                                    }
+
+                                    $('#remove_psu').click(function() {
+                                        $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this SPU?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                        $('#confirm-remove-button').unbind('click').click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/remove_psu/', {
+                                                method: 'POST',
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                $("#price").text(priceFormatter.format(Number(data.price)));
+                                                $('#psu_slot').empty();
+                                                $('#detail-page-btn').hide();
+                                            });
+                                        });
+                                    });
+
+                                });
+                            };
+
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].brand + ' ' + data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let newp = $('<p></p>');
+                            newp.append('<strong>Brand: </strong>');
+
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        };
+                    };
+                });
+            });
+        </script>
+        <!-- case -->
+        <script>
+            const pc_case = document.getElementById('caseform');
+            pc_case.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('http://127.0.0.1:8000/demo/pick_case/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    mode: 'same-origin',
+                })
+                .then(re => re.json())
+                .then(data => {
+                    JSON.stringify(data)
+                    if (data.info.length == 0) {
+                        $("#comp").text('CANNOT FIND ANYTHING');
+                        $("#result").html("Number of results found: <strong>0</strong>");
+                    }
+                    else {
+                        $("#comp").empty();
+                        let numcount = $("<strong></strong>").append(data.info.length.toString());
+                        $("#result").text("Number of results found: ").append(numcount);
+                        for (i = 0; i < data.info.length; i++){
+                            button = document.createElement('button');
+                            button.setAttribute( "class", "btn btn-grad-info" );
+                            button.innerHTML = "SELECT";
+                            button.value = i;
+                            button.onclick = function() {
+                                fetch('http://127.0.0.1:8000/demo/add_case/', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ index: this.value }),
+                                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                    mode: 'same-origin',
+                                })
+                                .then(re => re.json())
+                                .then(data => {
+                                    JSON.stringify(data);
+                                    $("#case_slot").empty();
+                                    if (data.stat == 1) {
+                                        alert(data.mess);
+                                    }
+                                    let newcaserow = $('<div class="row mb-2"></div>');
+
+                                    let newcaseimgcol = $('<div class="col-auto"></col>');
+                                    let newcaseimg = $('<img src="'+data.item.img+'" class="img-fluid" alt="..." style="width:150px; height:150px;">');
+                                    newcaseimgcol.append(newcaseimg);
+
+                                    let newcaseitem = $('<div class="col py-2"></col>');
+                                    let newcasename = $('<p class="fs-5 fw-bold"></p>').text(data.item.name);
+                                    newcaseitem.append(newcasename);
+
+                                    let detail = $('<div id="case" class="collapse mt-2"></div>');
+                                    let table = $('<table class="table"></table>');
+                                    console.log(data.item);
+                                    let tbody = $('<tbody></tbody>');
+
+                                    if (!data.item.case_type) {
+                                        tbody.append('<tr> \
+                                            <th scope="row" class="col-6">Board supported</th> \
+                                            <td class="col-6">'+data.item.board_supported+'</td> \
+                                        </tr>');
+                                    }
+                                    else {
+                                        tbody.append('<tr> \
+                                            <th scope="row" class="col-6">Case type</th> \
+                                            <td class="col-6">'+data.item.case_type+'</td> \
+                                        </tr> \
+                                        <tr> \
+                                            <th scope="row">Board supported</th> \
+                                            <td>'+data.item.board_supported+'</td> \
+                                        </tr>');
+                                    }
+
+                                    table.append(tbody);
+                                    detail.append(table)
+                                    newcaseitem.append(detail);
+
+                                    let newcasepricecol = $('<div class="col-auto d-flex justify-content-end py-2"></div>');
+                                    let newcaseprice = $('<span class="text-danger"></span>').text(priceFormatter.format(Number(data.item.price)));
+                                    newcasepricecol.append(newcaseprice);
+
+                                    let newdropdowncol= $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let buttoncollapse = $('<div><button class="btn btn-outline-secondary" type="button" \
+                                        data-bs-toggle="collapse" \
+                                        data-bs-target="#case" \
+                                        aria-expanded="false" \
+                                        aria-controls="case"> \
+                                        <i class="fas fa-caret-down"></i></button></div>');
+                                    newdropdowncol.append(buttoncollapse);
+
+                                    let newcaseremovecol = $('<div class="col-auto d-flex justify-content-center py-2"></div>');
+                                    let tempdiv = $('<div></div');
+                                    let newcaseremovebtn = $('<button type="button" id="remove_case" class="btn btn-grad-remove" data-bs-toggle="modal" data-bs-target="#modal-confirm-remove">Remove</button>');
+
+                                    tempdiv.append(newcaseremovebtn);
+                                    newcaseremovecol.append(tempdiv);
+
+                                    newcaserow.append(newcaseimgcol, newcaseitem, newcasepricecol, newdropdowncol, newcaseremovecol);
+                                    $("#case_slot").append(newcaserow);
+
+                                    $("#price").text(priceFormatter.format(Number(data.price)));
+
+                                    $('#remove_case').click(function() {
+                                        $('#remove-confirm-body').html('<p class="text-center fs-5">Do you really want to remove this case?</p>' + '<p class="text-center text-secondary">We cannot undo this action.</p>');
+                                        $('#confirm-remove-button').unbind('click').click(function() {
+                                            fetch('http://127.0.0.1:8000/demo/remove_case/', {
+                                                method: 'POST',
+                                                headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                                                mode: 'same-origin',
+                                            })
+                                            .then(re => re.json())
+                                            .then(data => {
+                                                JSON.stringify(data);
+                                                $("#price").text(priceFormatter.format(Number(data.price)));
+                                                $('#case_slot').empty();
+                                            });
+                                        });
+                                    });
+
+                                });
+                            };
+
+                            button.classList.add("btn", "btn-primary");
+                            let counter = $('<th scope="row"></th>').text(i+1);
+                            let name = $("<td></td>").text(data.info[i].name);
+                            let temp_price = priceFormatter.format(Number(data.info[i].price))
+                            let price = $("<td></td>").text(temp_price);
+                            let newp = $('<p></p>');
+                            newp.append('<strong>Brand: </strong>');
+
+                            let action = $("<td></td>").append(button);
+                            let newrow = $("<tr></tr>").append(counter, name, price, action);
+                            $("tbody#comp").append(newrow);
+                        }
+                    }
+                });
+            });
+        </script>
+
+{% endblock %}

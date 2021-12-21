@@ -1,0 +1,421 @@
+{% extends "builder/layout.html" %}
+{% load humanize %} {% load mathfilters %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid bg-gradient2">
+    <p class="text-center h1 py-3 mb-0 text-white text-bold">Search a RAM</p>
+</div>
+<div class="container-fluid p-lg-5">
+    <form id="product-ram-search" method="post">
+    <div class="row gx-5">
+        <div class="col-lg-2 col-12">
+<!--            filter-brand-->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs- pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">BRAND</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#brand-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="brand-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="rambrand" id="rambrandall" checked>
+                        <label class="form-check-label" for="rambrandall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Corsair" name="rambrand" id="rambrandcorsair">
+                        <label class="form-check-label" for="rambrandcorsair">
+                            Corsair
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Crucial" name="rambrand" id="rambrandcrucial">
+                        <label class="form-check-label" for="rambrandcrucial">
+                            Crucial
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="G.SKILL" name="rambrand" id="rambrandgskill">
+                        <label class="form-check-label" for="rambrandgskill">
+                            G.SKILL
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="HyperX" name="rambrand" id="rambrandhyperx">
+                        <label class="form-check-label" for="rambrandhyperx">
+                            HyperX
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-memory-type -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">MEMORY TYPE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#memorytype-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="memorytype-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="ramtype" id="ramtypeall" checked>
+                        <label class="form-check-label" for="ramtypeall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="DDR3" name="ramtype" id="ramddr3">
+                        <label class="form-check-label" for="ramddr3">
+                            DDR3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="DDR4" name="ramtype" id="ramddr4">
+                        <label class="form-check-label" for="ramddr4">
+                            DDR4
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-ram-bus -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">RAM BUS</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#rambus-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="rambus-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="rambus" id="rambusall" checked>
+                        <label class="form-check-label" for="rambusall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="2133" name="rambus" id="ram2133">
+                        <label class="form-check-label" for="ram2133">
+                            2133MHz
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="2400" name="rambus" id="ram2400">
+                        <label class="form-check-label" for="ram2400">
+                            2400MHz
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="2666" name="rambus" id="ram2666">
+                        <label class="form-check-label" for="ram2666">
+                            2666MHz
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="3000" name="rambus" id="ram3000">
+                        <label class="form-check-label" for="ram3000">
+                            3000MHz
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="3200" name="rambus" id="ram3200">
+                        <label class="form-check-label" for="ram3200">
+                            3200MHz
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="3600" name="rambus" id="ram3600">
+                        <label class="form-check-label" for="ram3600">
+                            3600MHz
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-quantity -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">QUANTITY</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#quantity-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="quantity-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="ramquantity" id="ramquantityall" checked>
+                        <label class="form-check-label" for="ramquantityall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Single" name="ramquantity" id="ramsingle">
+                        <label class="form-check-label" for="ramsingle">
+                            Single
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Kit 2" name="ramquantity" id="ramkit2">
+                        <label class="form-check-label" for="ramkit2">
+                            Kit 2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Kit 4" name="ramquantity" id="ramkit4">
+                        <label class="form-check-label" for="ramkit4">
+                            Kit 4
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-size -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">SIZE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#size-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="size-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="ramsize" id="ramsizeall" checked>
+                        <label class="form-check-label" for="ramsizeall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="4GB" name="ramsize" id="ram4gb">
+                        <label class="form-check-label" for="ram4gb">
+                            4GB
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="8GB" name="ramsize" id="ram8gb">
+                        <label class="form-check-label" for="ram8gb">
+                            8GB
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="16GB" name="ramsize" id="ram16gb">
+                        <label class="form-check-label" for="ram16gb">
+                            16GB
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-bench -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="rambench" class="form-label mb-0">BENCH</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#bench-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="bench-expand" class="collapse show">
+                    <input name="rambench" type="text" id="rambench" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="bench-range"></div>
+                </div>
+            </div>
+<!--            filter-price -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="ramprice" class="form-label mb-0">PRICE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#price-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="price-expand" class="collapse show">
+                    <input name="ramprice" type="text" id="ramprice" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="price-range"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-grad-info w-75" type="submit" id="product_ram_search_btn">Search</button>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="row justify-content-center border-bottom border-dark py-2">
+                <div class="col align-self-end">
+                    <p class="mb-0 fw-bold text-lg-start text-center" id="ram-search-result">{{ram_list|length}} Products Found</p>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search..." name="ramname">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <table class="table sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-table-header">Name</th>
+                            <th scope="col" class="product-table-header">Brand</th>
+                            <th scope="col" class="product-table-header">Memory Type</th>
+                            <th scope="col" class="product-table-header">Ram Bus</th>
+                            <th scope="col" class="product-table-header">Quantity</th>
+                            <th scope="col" class="product-table-header">Size</th>
+                            <th scope="col" class="product-table-header">Bench</th>
+                            <th scope="col" class="product-table-header text-end">Price(₫)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_ram_filter_slot">
+                        {% for ram in ram_list %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-auto">
+                                        <a href="#" class="fw-bold" target="_blank"><img src="{{ram.img}}" alt="" class="product-img"></a>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="#" class="fw-bold" target="_blank">{{ram.brand}} {{ram.name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ram.brand}}</td>
+                            <td>{{ram.memory_type}}</td>
+                            <td>{{ram.ram_bus}}</td>
+                            <td>{{ram.quantity}}</td>
+                            <td>{{ram.size}}</td>
+                            <td>{{ram.bench}}</td>
+                            <td class="fw-bold text-end">{{ram.price|floatformat:"0g"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script>
+//  BRAND
+$('#rambrandall').click(function() {
+    if ($('#rambrandall').prop('checked')) {
+        $('input[name="rambrand"][id!="rambrandall"]').prop('checked', false);
+    }
+})
+$('input[name="rambrand"][id!="rambrandall"]').click(function() {
+    if ($('input[name="rambrand"][id!="rambrandall"]:checked').length) {
+        $('#rambrandall').prop('checked', false);
+    }
+    else $('#rambrandall').prop('checked', true);
+})
+//  MEMORY TYPE
+$('#ramtypeall').click(function() {
+    if ($('#ramtypeall').prop('checked')) {
+        $('input[name="ramtype"][id!="ramtypeall"]').prop('checked', false);
+    }
+})
+$('input[name="ramtype"][id!="ramtypeall"]').click(function() {
+    if ($('input[name="ramtype"][id!="ramtypeall"]:checked').length) {
+        $('#ramtypeall').prop('checked', false);
+    }
+    else $('#ramtypeall').prop('checked', true);
+})
+// RAM BUS
+$('#rambusall').click(function() {
+    if ($('#rambusall').prop('checked')) {
+        $('input[name="rambus"][id!="rambusall"]').prop('checked', false);
+    }
+})
+$('input[name="rambus"][id!="rambusall"]').click(function() {
+    if ($('input[name="rambus"][id!="rambusall"]:checked').length) {
+        $('#rambusall').prop('checked', false);
+    }
+    else $('#rambusall').prop('checked', true);
+})
+// QUANTITY
+$('#ramquantityall').click(function() {
+    if ($('#ramquantityall').prop('checked')) {
+        $('input[name="ramquantity"][id!="ramquantityall"]').prop('checked', false);
+    }
+})
+$('input[name="ramquantity"][id!="ramquantityall"]').click(function() {
+    if ($('input[name="ramquantity"][id!="ramquantityall"]:checked').length) {
+        $('#ramquantityall').prop('checked', false);
+    }
+    else $('#ramquantityall').prop('checked', true);
+})
+// SIZE
+$('#ramsizeall').click(function() {
+    if ($('#ramsizeall').prop('checked')) {
+        $('input[name="ramsize"][id!="ramsizeall"]').prop('checked', false);
+    }
+})
+$('input[name="ramsize"][id!="ramsizeall"]').click(function() {
+    if ($('input[name="ramsize"][id!="ramsizeall"]:checked').length) {
+        $('#ramsizeall').prop('checked', false);
+    }
+    else $('#ramsizeall').prop('checked', true);
+})
+</script>
+<!--bench-->
+<script>
+    $( function() {
+        $( "#bench-range" ).slider({
+            range: true,
+            min: 0,
+            max: 200,
+            step: 10,
+            values: [ 0, 200 ],
+            slide: function( event, ui ) {
+                $( "#rambench" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+            }
+        });
+        $( "#rambench" ).val( $( "#bench-range" ).slider( "values", 0 ) +
+            " - " + $( "#bench-range" ).slider( "values", 1 ));
+    } );
+</script>
+<!--price-->
+<script>
+    $( function() {
+        $( "#price-range" ).slider({
+            range: true,
+            min: 500000,
+            max: 10000000,
+            step: 100000,
+            values: [ 500000, 10000000 ],
+            slide: function( event, ui ) {
+                $( "#ramprice" ).val( ui.values[ 0 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) + " - " + ui.values[ 1 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+            }
+        });
+        $( "#ramprice" ).val( $( "#price-range" ).slider( "values", 0 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +
+            " - " + $( "#price-range" ).slider( "values", 1 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    } );
+</script>
+<!--search-->
+<script>
+const ram = document.getElementById('product-ram-search');
+ram.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    console.log(1);
+    fetch('http://127.0.0.1:8000/demo/product_ram_search/', {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        mode: 'same-origin',
+    })
+    .then(re => re.json())
+    .then(data => {
+        JSON.stringify(data);
+        console.log(data);
+
+        $('#product_ram_filter_slot').empty();
+        $('#ram-search-result').text(data.ram_list.length+' Products Found');
+        for (let i = 1; i<=data.ram_list.length; i++) {
+            let newtablerow = $('<tr></tr>');
+            let newname = $('<td>' +
+                '                                <div class="row">' +
+                '                                    <div class="col-lg-auto">' +
+                '                                        <a href="#" class="fw-bold" target="_blank"><img src="'+data.ram_list[i-1].img+'" alt="" class="product-img"></a>' +
+                '                                    </div>' +
+                '                                    <div class="col d-flex align-items-center">\n' +
+                '                                        <a href="#" class="fw-bold" target="_blank">'+data.ram_list[i-1].brand + ' ' + data.ram_list[i-1].name +'</a>\n' +
+                '                                    </div>' +
+                '                                </div>' +
+                '                            </td>');
+            let newrambrand = $('<td>'+data.ram_list[i-1].brand+'</td>');
+            let newramtype = $('<td>'+data.ram_list[i-1].memory_type+'</td>');
+            let newrambus = $('<td>'+data.ram_list[i-1].ram_bus+'</td>');
+            let newquantity = $('<td>'+data.ram_list[i-1].quantity+'</td>');
+            let newsize = $('<td>'+data.ram_list[i-1].size+'</td>');
+            let newbench = $('<td>'+data.ram_list[i-1].bench+'</td>');
+            let newprice = $('<td class="fw-bold text-end">'+priceFormatter.format(Number(data.ram_list[i-1].price)).substring(1)+'</td>');
+            newtablerow.append(newname, newramtype, newrambrand, newramtype, newrambus, newquantity, newsize, newbench, newprice);
+            $('#product_ram_filter_slot').append(newtablerow);
+        }
+    });
+})
+</script>
+{% endblock %}

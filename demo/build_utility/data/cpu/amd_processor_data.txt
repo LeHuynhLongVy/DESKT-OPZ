@@ -1,0 +1,1504 @@
+Name:	AMD Athlon™ Silver 3050GE (OEM Only)
+Platform:	Desktop
+Product Family:	AMD Athlon™ Processors
+Product Line:	AMD Athlon™ 3000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	2
+# of Threads:	4
+Max. Boost Clock:	Up to 3.4GHz
+Base Clock:	3.4GHz
+Total L1 Cache:	192KB
+Total L2 Cache:	1MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	14nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2667MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD305GC6M2OFH
+
+Name:	AMD Athlon™ Gold 3150G (OEM Only)
+Platform:	Desktop
+Product Family:	AMD Athlon™ Processors
+Product Line:	AMD Athlon™ 3000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	4
+# of Threads:	4
+Max. Boost Clock:	Up to 3.9GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	12nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD3150C5M4MFH
+
+Name:	AMD Athlon™ Gold 3150GE (OEM Only)
+Platform:	Desktop
+Product Family:	AMD Athlon™ Processors
+Product Line:	AMD Athlon™ 3000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	4
+# of Threads:	4
+Max. Boost Clock:	Up to 3.8GHz
+Base Clock:	3.3GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	12nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD3150C6M4MFH
+
+Name:	AMD Ryzen™ 7 5700G
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 7 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.8GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	16MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2000 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Boxed:	100-100000263BOX
+Product ID Tray:	100-000000263
+Product ID MPK:	100-100000263MPK
+
+Name:	AMD Ryzen™ 3 5300GE (OEM Only)
+Platform:	Desktop
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 3 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.6GHz
+Total L2 Cache:	2MB
+Total L3 Cache:	8MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000262 (OEM Only)
+
+Name:	AMD Ryzen™ 3 5300G (OEM Only)
+Platform:	Desktop
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 3 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	4.0GHz
+Total L2 Cache:	2MB
+Total L3 Cache:	8MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000253 (OEM Only)
+
+Name:	AMD Ryzen™ 5 5600GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 5 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.4GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	16MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000261
+Product ID MPK:	100-100000261MPK
+
+Name:	AMD Ryzen™ 5 5600G
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 5 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.9GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	16MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Boxed:	100-100000252BOX
+Product ID Tray:	100-000000252
+Product ID MPK:	100-100000252MPK
+
+Name:	AMD Ryzen™ 7 5700GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 7 5000 G-Series Desktop Processors with Radeon™ Graphics
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.2GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	16MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	4/13/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2000 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000260
+Product ID MPK:	100-100000260MPK
+
+Name:	AMD Ryzen™ 7 3800X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 7 Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.5GHz
+Base Clock:	3.9GHz
+Total L1 Cache:	512KB
+Total L2 Cache:	4MB
+Total L3 Cache:	32MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Prism with RGB LED
+Thermal Solution (MPK):	Wraith PRISM
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/7/2019
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0 x16
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000025BOX
+Product ID Tray:	100-000000025
+Product ID MPK:	100-100000025MPK
+
+Name:	AMD Ryzen™ 9 3900X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 9 Desktop Processors
+# of CPU Cores:	12
+# of Threads:	24
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.8GHz
+Total L1 Cache:	768KB
+Total L2 Cache:	6MB
+Total L3 Cache:	64MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Prism with RGB LED
+Thermal Solution (MPK):	Wraith PRISM
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/7/2019
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0 x16
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000023BOX
+Product ID Tray:	100-000000023
+Product ID MPK:	100-100000023MPK
+
+Name:	AMD Ryzen™ 9 3950X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 9 Desktop Processors
+# of CPU Cores:	16
+# of Threads:	32
+Max. Boost Clock:	Up to 4.7GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	1MB
+Total L2 Cache:	8MB
+Total L3 Cache:	64MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Cooler Not Included, Liquid Cooling Recommended
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0 x16
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000051WOF
+Product ID Tray:	100-000000051
+
+Name:	AMD Ryzen™ Threadripper™ 2950X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	16
+# of Threads:	32
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	1.5MB
+Total L2 Cache:	8MB
+Total L3 Cache:	32MB
+Default TDP:	180W
+CMOS:	12nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTR4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	68°C
+Launch Date:	8/31/2018
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 3.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 2933MHz
+Product ID Boxed:	YD295XA8AFWOF
+Product ID Tray:	YD295XA8UGAAF
+Supported Technologies:	AMD SenseMI Technology	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Athlon™ PRO 200GE
+Platform:	Desktop
+Product Family:	AMD Athlon™ PRO Processors
+Product Line:	AMD Athlon™ PRO Desktop Processors with Radeon™ Vega Graphics
+# of CPU Cores:	2
+Compute Cores:	5 (2 CPU + 3 GPU)
+# of Threads:	4
+Base Clock:	3.2GHz
+Total L1 Cache:	192KB
+Total L2 Cache:	1MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	14nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+Memory Channels:	2
+System Memory Specification:	Up to 2667MHz
+Graphics Model:	Radeon™ Vega 3 Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1000 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD200BC6M2OFB
+Product ID MPK:	YD200BC6FBMPK
+
+Name:	AMD Ryzen™ 5 PRO 3350G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO 3000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.0GHz
+Base Clock:	3.6GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	10
+Graphics Core Count:	10
+Graphics Frequency:	1300 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD335BC5M4MFH 
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ Threadripper™ PRO 3945WX
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ Threadripper™ PRO Processors
+# of CPU Cores:	12
+# of Threads:	24
+Max. Boost Clock:	Up to 4.3GHz
+Base Clock:	4.0GHz
+Total L1 Cache:	768KB
+Total L2 Cache:	6MB
+Total L3 Cache:	64MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	7/14/2020
+*OS Support:	Windows 10 - 64-Bit Edition	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	8
+System Memory Specification:	Up to 3200MHz
+Product ID Tray:	100-000000168
+Supported Technologies:	AMD "Zen" Core Architecture
+
+Name:	AMD Ryzen™ Threadripper™ PRO 3955WX
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ Threadripper™ PRO Processors
+# of CPU Cores:	16
+# of Threads:	32
+Max. Boost Clock:	Up to 4.3GHz
+Base Clock:	3.9GHz
+Total L1 Cache:	1MB
+Total L2 Cache:	8MB
+Total L3 Cache:	64MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	sWRX8
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	7/14/2020
+*OS Support:	Windows 10 - 64-Bit Edition	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	8
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000167WOF
+Product ID Tray:	100-000000167
+Supported Technologies:	AMD "Zen" Core Architecture
+
+Name:	AMD Ryzen™ Threadripper™ PRO 3975WX
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ Threadripper™ PRO Processors
+# of CPU Cores:	32
+# of Threads:	64
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	2MB
+Total L2 Cache:	16MB
+Total L3 Cache:	128MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	sWRX8
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	7/14/2020
+*OS Support:	Windows 10 - 64-Bit Edition	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	8
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000086WOF
+Product ID Tray:	100-000000086
+Supported Technologies:	AMD "Zen" Core Architecture
+
+Name:	AMD Ryzen™ Threadripper™ PRO 3995WX
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ Threadripper™ PRO Processors
+# of CPU Cores:	64
+# of Threads:	128
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	2.7GHz
+Total L1 Cache:	4MB
+Total L2 Cache:	32MB
+Total L3 Cache:	256MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	sWRX8
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	7/14/2020
+*OS Support:	Windows 10 - 64-Bit Edition	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	8
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000087WOF
+Product ID Tray:	100-000000087
+Supported Technologies:	AMD "Zen" Core Architecture
+
+Name:	AMD Ryzen™ 5 PRO 3400GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO Desktop Processors with Radeon™ Vega Graphics
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.0GHz
+Base Clock:	3.3GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™ Vega 11 Graphics
+# of GPU Cores:	11
+Graphics Core Count:	11
+Graphics Frequency:	1300 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD340BC6M4MFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ 5 PRO 3400G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO Desktop Processors with Radeon™ Vega Graphics
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.7GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™ Vega 11 Graphics
+# of GPU Cores:	11
+Graphics Core Count:	11
+Graphics Frequency:	1400 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD340BC5M4MFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ 5 PRO 3600
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.6GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	3MB
+Total L3 Cache:	32MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Tray:	100-000000029
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ 7 PRO 3700
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 7 PRO Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.6GHz
+Total L1 Cache:	512KB
+Total L2 Cache:	4MB
+Total L3 Cache:	32MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Tray:	100-000000073
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ 9 PRO 3900
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 9 PRO Desktop Processors
+# of CPU Cores:	12
+# of Threads:	24
+Max. Boost Clock:	Up to 4.3GHz
+Base Clock:	3.1GHz
+Total L1 Cache:	768KB
+Total L2 Cache:	6MB
+Total L3 Cache:	64MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Socket Count:	1P
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Product ID Tray:	100-000000072
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ 3 PRO 4350GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 3 PRO 4000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.0GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	256KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000154
+Product ID MPK:	100-100000154MPK
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 3 PRO 4350G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 3 PRO 4000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.0GHz
+Base Clock:	3.8GHz
+Total L1 Cache:	256KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000148
+Product ID MPK:	100-100000148MPK
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 5 PRO 4650GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO 4000 Series Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.3GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	3MB
+Total L3 Cache:	8MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000153
+Product ID MPK:	100-100000153MPK
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 5 PRO 4650G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO 4000 Series Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.7GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	3MB
+Total L3 Cache:	8MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000143
+Product ID MPK:	100-100000143MPK
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 7 PRO 4750GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 7 PRO 4000 Series Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.3GHz
+Base Clock:	3.1GHz
+Total L1 Cache:	512KB
+Total L2 Cache:	4MB
+Total L3 Cache:	8MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000152
+Product ID MPK:	100-100000152MPK
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 7 PRO 4750G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 7 PRO 4000 Series Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.6GHz
+Total L1 Cache:	512KB
+Total L2 Cache:	4MB
+Total L3 Cache:	8MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Thermal Solution (MPK):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™ Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000145
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 3 PRO 5350GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 3 PRO 5000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.6GHz
+Total L2 Cache:	2MB
+Total L3 Cache:	8MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000259
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 3 PRO 5350G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 3 PRO 5000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	8
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	4.0GHz
+Total L2 Cache:	2MB
+Total L3 Cache:	8MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	6
+Graphics Core Count:	6
+Graphics Frequency:	1700 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000256
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 7 PRO 5750GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 7 PRO 5000 Series Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.2GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	16MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2000 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000257 
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 7 PRO 5750G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 7 PRO 5000 Series Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.8GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	16MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	8
+Graphics Core Count:	8
+Graphics Frequency:	2000 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000254 
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 5 PRO 5650GE
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO 5000 Series Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.4GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	16MB
+Default TDP:	35W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000258 
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Ryzen™ 5 PRO 5650G
+Platform:	Desktop
+Product Family:	AMD Ryzen™ PRO Processors
+Product Line:	AMD Ryzen™ 5 PRO 5000 Series Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.4GHz
+Base Clock:	3.9GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	16MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	6/1/2021
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 3200MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	7
+Graphics Core Count:	7
+Graphics Frequency:	1900 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	100-000000255 
+Supported Technologies:	AMD PRO technologies
+
+Name:	AMD Athlon™ PRO 300GE
+Platform:	Desktop
+Product Family:	AMD Athlon™ PRO Processors
+Product Line:	AMD Athlon™ PRO Desktop Processors with Radeon™ Vega Graphics
+# of CPU Cores:	2
+# of Threads:	4
+Base Clock:	3.4GHz
+Total L1 Cache:	192KB
+Total L2 Cache:	1MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	9/30/19
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2667MHz
+Graphics Model:	Radeon™ Vega 3 Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD300BC6M2OFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Athlon™ Silver PRO 3125GE
+Platform:	Desktop
+Product Family:	AMD Athlon™ PRO Processors
+Product Line:	AMD Athlon™ PRO 3000 Series Desktop Processors
+# of CPU Cores:	2
+# of Threads:	4
+Max. Boost Clock:	Up to 3.4GHz
+Base Clock:	3.4GHz
+Total L1 Cache:	192KB
+Total L2 Cache:	1MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2667MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD3125C6M2OFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Athlon™ Gold PRO 3150GE
+Platform:	Desktop
+Product Family:	AMD Athlon™ PRO Processors
+Product Line:	AMD Athlon™ PRO 3000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	4
+Max. Boost Clock:	Up to 3.8GHz
+Base Clock:	3.3GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	35W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD315BC6M4MFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Athlon™ Gold PRO 3150G
+Platform:	Desktop
+Product Family:	AMD Athlon™ PRO Processors
+Product Line:	AMD Athlon™ PRO 3000 Series Desktop Processors
+# of CPU Cores:	4
+# of Threads:	4
+Max. Boost Clock:	Up to 3.9GHz
+Base Clock:	3.5GHz
+Total L1 Cache:	384KB
+Total L2 Cache:	2MB
+Total L3 Cache:	4MB
+Default TDP:	65W
+AMD Configurable TDP (cTDP):	45-65W
+CMOS:	12nm
+Unlocked for Overclocking:	No
+CPU Socket:	AM4
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/21/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe® 3.0
+System Memory Type:	DDR4
+Memory Channels:	2
+System Memory Specification:	Up to 2933MHz
+Graphics Model:	Radeon™  Graphics
+# of GPU Cores:	3
+Graphics Core Count:	3
+Graphics Frequency:	1100 MHz
+Display Port:	Yes
+HDMI™:	Yes
+Product ID Tray:	YD315BC5M4MFH
+Supported Technologies:	AMD Memory Guard	AMD GuardMI Technology	DASH 1.2
+
+Name:	AMD Ryzen™ Threadripper™ 2970WX
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	24
+# of Threads:	48
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.0GHz
+Total L1 Cache:	2.25MB
+Total L2 Cache:	12MB
+Total L3 Cache:	64MB
+Default TDP:	250W
+CMOS:	12nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTR4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	68°C
+Launch Date:	10/18
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 3.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 2933MHz
+Product ID Boxed:	YD297XAZAFWOF
+Product ID Tray:	YD297XAZUHCAF
+Supported Technologies:	AMD SenseMI Technology	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ Threadripper™ 2990WX
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	32
+# of Threads:	64
+Max. Boost Clock:	Up to 4.2GHz
+Base Clock:	3.0GHz
+Total L1 Cache:	3MB
+Total L2 Cache:	16MB
+Total L3 Cache:	64MB
+Default TDP:	250W
+CMOS:	12nm
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTR4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	68°C
+Launch Date:	8/13/2018
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 3.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 2933MHz
+Product ID Boxed:	YD299XAZAFWOF
+Product ID Tray:	YD299XAZUIHAF
+Supported Technologies:	AMD SenseMI Technology	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ Threadripper™ 3960X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	24
+# of Threads:	48
+Max. Boost Clock:	Up to 4.5GHz
+Base Clock:	3.8GHz
+Total L1 Cache:	1.5MB
+Total L2 Cache:	12MB
+Total L3 Cache:	128MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTRX4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	11/25/2019
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000010WOF
+Product ID Tray:	100-000000010
+Supported Technologies:	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ Threadripper™ 3970X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	32
+# of Threads:	64
+Max. Boost Clock:	Up to 4.5GHz
+Base Clock:	3.7GHz
+Total L1 Cache:	2MB
+Total L2 Cache:	16MB
+Total L3 Cache:	128MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTRX4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	11/25/2019
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000011WOF
+Product ID Tray:	100-000000011
+Supported Technologies:	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ Threadripper™ 3990X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ Threadripper™ Processors
+# of CPU Cores:	64
+# of Threads:	128
+Max. Boost Clock:	Up to 4.3GHz
+Base Clock:	2.9GHz
+Total L1 Cache:	4MB
+Total L2 Cache:	32MB
+Total L3 Cache:	256MB
+Default TDP:	280W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	sTRX4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	2/7/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+Memory Channels:	4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000163WOF
+Product ID Tray:	100-000000163
+Supported Technologies:	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ 5 3600XT
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 5 Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.5GHz
+Base Clock:	3.8GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	32MB
+Default TDP:	95W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Spire
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000281BOX
+Supported Technologies:	AMD StoreMI Technology	AMD "Zen" Core Architecture	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ 7 3800XT
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 7 Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.7GHz
+Base Clock:	3.9GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	32MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000279WOF
+Supported Technologies:	AMD StoreMI Technology	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ 9 3900XT
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 9 Desktop Processors
+# of CPU Cores:	12
+# of Threads:	24
+Max. Boost Clock:	Up to 4.7GHz
+Base Clock:	3.8GHz
+Total L2 Cache:	6MB
+Total L3 Cache:	64MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	7/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000277WOF
+Supported Technologies:	AMD StoreMI Technology	AMD Ryzen™ Master Utility
+
+Name:	AMD Ryzen™ 5 5600X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 5 Desktop Processors
+# of CPU Cores:	6
+# of Threads:	12
+Max. Boost Clock:	Up to 4.6GHz
+Base Clock:	3.7GHz
+Total L2 Cache:	3MB
+Total L3 Cache:	32MB
+Default TDP:	65W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Wraith Stealth
+Max. Operating Temperature (Tjmax):	95°C
+Launch Date:	11/5/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000065BOX
+Product ID Tray:	100-000000065
+Product ID MPK:	100-100000065MPK
+Supported Technologies:	AMD "Zen 3" Core Architecture	AMD StoreMI Technology	AMD Ryzen™ Master Utility	AMD Ryzen™ VR-Ready Premium
+
+Name:	AMD Ryzen™ 7 5800X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 7 Desktop Processors
+# of CPU Cores:	8
+# of Threads:	16
+Max. Boost Clock:	Up to 4.7GHz
+Base Clock:	3.8GHz
+Total L2 Cache:	4MB
+Total L3 Cache:	32MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	11/5/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000063WOF
+Product ID Tray:	100-000000063
+Supported Technologies:	AMD "Zen 3" Core Architecture	AMD StoreMI Technology	AMD Ryzen™ Master Utility	AMD Ryzen™ VR-Ready Premium
+
+Name:	AMD Ryzen™ 9 5900X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 9 Desktop Processors
+# of CPU Cores:	12
+# of Threads:	24
+Max. Boost Clock:	Up to 4.8GHz
+Base Clock:	3.7GHz
+Total L2 Cache:	6MB
+Total L3 Cache:	64MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	11/5/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000061WOF
+Product ID Tray:	100-000000061
+Supported Technologies:	AMD "Zen 3" Core Architecture	AMD StoreMI Technology	AMD Ryzen™ Master Utility	AMD Ryzen™ VR-Ready Premium
+
+Name:	AMD Ryzen™ 9 5950X
+Platform:	Boxed Processor
+Product Family:	AMD Ryzen™ Processors
+Product Line:	AMD Ryzen™ 9 Desktop Processors
+# of CPU Cores:	16
+# of Threads:	32
+Max. Boost Clock:	Up to 4.9GHz
+Base Clock:	3.4GHz
+Total L2 Cache:	8MB
+Total L3 Cache:	64MB
+Default TDP:	105W
+CMOS:	TSMC 7nm FinFET
+Unlocked for Overclocking:	Yes
+CPU Socket:	AM4
+Thermal Solution (PIB):	Not included
+Max. Operating Temperature (Tjmax):	90°C
+Launch Date:	11/5/2020
+*OS Support:	Windows 10 - 64-Bit Edition	RHEL x86 64-Bit	Ubuntu x86 64-Bit	*Operating System (OS) support will vary by manufacturer.
+PCI Express® Version:	PCIe 4.0
+System Memory Type:	DDR4
+System Memory Specification:	Up to 3200MHz
+Product ID Boxed:	100-100000059WOF
+Product ID Tray:	100-000000059
+Supported Technologies:	AMD "Zen 3" Core Architecture	AMD StoreMI Technology	AMD Ryzen™ Master Utility	AMD Ryzen™ VR-Ready Premium
+

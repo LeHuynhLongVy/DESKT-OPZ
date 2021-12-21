@@ -1,0 +1,689 @@
+{% extends "builder/layout.html" %}
+{% load humanize %} {% load mathfilters %}
+{% load crispy_forms_tags %}
+{% load humanize %} {% load mathfilters %}
+{% block body %}
+{% csrf_token %}
+<div class="container-fluid bg-gradient2">
+    <p class="text-center h1 py-3 mb-0 text-white text-bold">Search a Mainboard</p>
+</div>
+<div class="container-fluid p-lg-5">
+    <form id="product-mainboard-search" method="post">
+    <div class="row gx-5">
+        <div class="col-lg-2 col-12">
+<!--            filter-brand-->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs- pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">BRAND</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#brand-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="brand-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardbrand" id="boardbrandall" checked>
+                        <label class="form-check-label" for="boardbrandall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Asus" name="boardbrand" id="boardbrandasus">
+                        <label class="form-check-label" for="boardbrandasus">
+                            Asus
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Asrock" name="boardbrand" id="boardbrandasrock">
+                        <label class="form-check-label" for="boardbrandasrock">
+                            Asrock
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Colorful" name="boardbrand" id="boardbrandcolorful">
+                        <label class="form-check-label" for="boardbrandcolorful">
+                            Colorful
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Gigabyte" name="boardbrand" id="boardbrandgigabyte">
+                        <label class="form-check-label" for="boardbrandgigabyte">
+                            Gigabyte
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="MSI" name="boardbrand" id="boardbrandmsi">
+                        <label class="form-check-label" for="boardbrandmsi">
+                            MSI
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-socket -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">SOCKET</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#socket-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="socket-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardsocket" id="boardsocketall" checked>
+                        <label class="form-check-label" for="boardsocketall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1150" name="boardsocket" id="boardsocket1150">
+                        <label class="form-check-label" for="boardsocket1150">
+                            1150
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1151" name="boardsocket" id="boardsocket1151">
+                        <label class="form-check-label" for="boardsocket1151">
+                            1151
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1151-v2" name="boardsocket" id="boardsocket1151-v2">
+                        <label class="form-check-label" for="boardsocket1151-v2">
+                            1151-v2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1200" name="boardsocket" id="boardsocket1200">
+                        <label class="form-check-label" for="boardsocket1200">
+                            1200
+                        </label>
+                    </div>
+                    <div id="board-socket-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="2066" name="boardsocket" id="boardsocket2066">
+                            <label class="form-check-label" for="boardsocket2066">
+                                2066
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="AM4" name="boardsocket" id="boardsocketam4">
+                            <label class="form-check-label" for="boardsocketam4">
+                                AM4
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="sTRX4" name="boardsocket" id="boardsocketstrx4">
+                            <label class="form-check-label" for="boardsocketstrx4">
+                                sTRX4
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#board-socket-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-chipset -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">CHIPSET</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#chipset-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="chipset-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardchipset" id="boardchipsetall" checked>
+                        <label class="form-check-label" for="boardchipsetall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="A320" name="boardchipset" id="boardchipseta320">
+                        <label class="form-check-label" for="boardchipseta320">
+                            A320
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="A520" name="boardchipset" id="boardchipseta520">
+                        <label class="form-check-label" for="boardchipseta520">
+                            A520
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="B250" name="boardchipset" id="boardchipsetb250">
+                        <label class="form-check-label" for="boardchipsetb250">
+                            B250
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="B350" name="boardchipset" id="boardchipsetb350">
+                        <label class="form-check-label" for="boardchipsetb350">
+                            B350
+                        </label>
+                    </div>
+                    <div id="board-chipset-seemore" class="collapse">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B360" name="boardchipset" id="boardchipsetb360">
+                            <label class="form-check-label" for="boardchipsetb360">
+                                B360
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B365" name="boardchipset" id="boardchipsetb365">
+                            <label class="form-check-label" for="boardchipsetb365">
+                                B365
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B450" name="boardchipset" id="boardchipsetb450">
+                            <label class="form-check-label" for="boardchipsetb450">
+                                B450
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B460" name="boardchipset" id="boardchipsetb460">
+                            <label class="form-check-label" for="boardchipsetb460">
+                                B460
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B550" name="boardchipset" id="boardchipsetb550">
+                            <label class="form-check-label" for="boardchipsetb550">
+                                B550
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="B560" name="boardchipset" id="boardchipsetb560">
+                            <label class="form-check-label" for="boardchipsetb560">
+                                B560
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="C232" name="boardchipset" id="boardchipsetc232">
+                            <label class="form-check-label" for="boardchipsetc232">
+                                C232
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="C242" name="boardchipset" id="boardchipsetc242">
+                            <label class="form-check-label" for="boardchipsetc242">
+                                C242
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="C246" name="boardchipset" id="boardchipsetc246">
+                            <label class="form-check-label" for="boardchipsetc246">
+                                C246
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="H110" name="boardchipset" id="boardchipseth110">
+                            <label class="form-check-label" for="boardchipseth110">
+                                H110
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="H310" name="boardchipset" id="boardchipseth310">
+                            <label class="form-check-label" for="boardchipseth310">
+                                H310
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="H410" name="boardchipset" id="boardchipseth410">
+                            <label class="form-check-label" for="boardchipseth410">
+                                H410
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="H510" name="boardchipset" id="boardchipseth510">
+                            <label class="form-check-label" for="boardchipseth510">
+                                H510
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="H81" name="boardchipset" id="boardchipseth81">
+                            <label class="form-check-label" for="boardchipseth81">
+                                H81
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="TRX40" name="boardchipset" id="boardchipsettrx40">
+                            <label class="form-check-label" for="boardchipsettrx40">
+                                TRX40
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="X299" name="boardchipset" id="boardchipsetx299">
+                            <label class="form-check-label" for="boardchipsetx299">
+                                X299
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="X370" name="boardchipset" id="boardchipsetx370">
+                            <label class="form-check-label" for="boardchipsetx370">
+                                X370
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="X470" name="boardchipset" id="boardchipsetx470">
+                            <label class="form-check-label" for="boardchipsetx470">
+                                X470
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="X570" name="boardchipset" id="boardchipsetx570">
+                            <label class="form-check-label" for="boardchipsetx570">
+                                X570
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Z370" name="boardchipset" id="boardchipsetz370">
+                            <label class="form-check-label" for="boardchipsetz370">
+                                Z370
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Z390" name="boardchipset" id="boardchipsetz390">
+                            <label class="form-check-label" for="boardchipsetz390">
+                                Z390
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Z490" name="boardchipset" id="boardchipsetz490">
+                            <label class="form-check-label" for="boardchipsetz490">
+                                Z490
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Z590" name="boardchipset" id="boardchipsetz590">
+                            <label class="form-check-label" for="boardchipsetz590">
+                                Z590
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <a class="fs-6 text-decoration-underline text-theme seemore" data-bs-toggle="collapse" href="#board-chipset-seemore">See more</a>
+                    </div>
+                </div>
+            </div>
+<!--            filter-price -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="boardprice" class="form-label mb-0">PRICE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#price-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="price-expand" class="collapse show">
+                    <input name="boardprice" type="text" id="boardprice" class="w-100" readonly style="border:0; color:#0d6efd;">
+                    <div id="price-range"></div>
+                </div>
+            </div>
+<!--            filter-form-factor -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">FORM FACTOR</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#formfactor-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="formfactor-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardformfactor" id="boardformfactorall" checked>
+                        <label class="form-check-label" for="boardformfactorall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Mini-ITX" name="boardformfactor" id="boardformfactorminiatx">
+                        <label class="form-check-label" for="boardformfactorminiatx">
+                            Mini-ITX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Micro-ATX" name="boardformfactor" id="boardformfactormicroatx">
+                        <label class="form-check-label" for="boardformfactormicroatx">
+                            Micro-ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ATX" name="boardformfactor" id="boardformfactoratx">
+                        <label class="form-check-label" for="boardformfactoratx">
+                            ATX
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Extended-ATX" name="boardformfactor" id="boardformfactorextendedatx">
+                        <label class="form-check-label" for="boardformfactorextendedatx">
+                            Extended-ATX
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-ram-slot -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">RAM SLOT</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#ramslot-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="ramslot-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardramslot" id="boardramslotall" checked>
+                        <label class="form-check-label" for="boardramslotall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="2" name="boardramslot" id="boardramslot2">
+                        <label class="form-check-label" for="boardramslot2">
+                            2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="4" name="boardramslot" id="boardramslot4">
+                        <label class="form-check-label" for="boardramslot4">
+                            4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="8" name="boardramslot" id="boardramslot8">
+                        <label class="form-check-label" for="boardramslot8">
+                            8
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-memorytype -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label class="form-label mb-0">MEMORY TYPE</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#memorytype-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="memorytype-expand" class="collapse show">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="all" name="boardmemorytype" id="boardmemorytypeall" checked>
+                        <label class="form-check-label" for="boardmemorytypeall">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="DDR3" name="boardmemorytype" id="boardmemorytypeddr3">
+                        <label class="form-check-label" for="boardmemorytypeddr3">
+                            DDR3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="DDR4" name="boardmemorytype" id="boardmemorytypeddr4">
+                        <label class="form-check-label" for="boardmemorytypeddr4">
+                            DDR4
+                        </label>
+                    </div>
+                </div>
+            </div>
+<!--            filter-SATA-PORTS -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="boardsataports" class="form-label mb-0">SATA PORTS</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#sata-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="sata-expand" class="collapse show">
+                    <input name="boardsataports" type="text" id="boardsataports" readonly style="border:0; color:#0d6efd; font-weight:bold;">
+                    <div id="sata-range"></div>
+                </div>
+            </div>
+<!--            filter-M.2 slots -->
+            <div class=" mb-3 pb-2">
+                <div class="border-bottom fw-bold fs-6 pt-2 mb-2 border-dark">
+                    <label for="boardm2slots" class="form-label mb-0">M.2 Slots</label>
+                    <a class="float-end text-dark expand" data-bs-toggle="collapse" href="#m2-expand"><i class="fas fa-minus"></i></a>
+                </div>
+                <div id="m2-expand" class="collapse show">
+                    <input name="boardm2slots" type="text" id="boardm2slots" readonly style="border:0; color:#0d6efd; font-weight:bold;">
+                    <div id="m2-range"></div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <button class="btn btn-grad-info w-75" type="submit" id="product-board-search">Search</button>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="row justify-content-center border-bottom border-dark py-2">
+                <div class="col align-self-end">
+                    <p class="mb-0 fw-bold" id="board-search-result">{{mainboard_list|length}} Products Found</p>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search..." name="boardname">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <table class="table sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-table-header">Name</th>
+                            <th scope="col" class="product-table-header">Socket</th>
+                            <th scope="col" class="product-table-header">Chipset</th>
+                            <th scope="col" class="product-table-header">Form factor</th>
+                            <th scope="col" class="product-table-header">Ram slot</th>
+                            <th scope="col" class="product-table-header">Memory type</th>
+                            <th scope="col" class="product-table-header">Storage type</th>
+                            <th scope="col" class="product-table-header">PCI Slots</th>
+                            <th scope="col" class="product-table-header text-end">Price(₫)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_board_filter_slot">
+                        {% for board in mainboard_list %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-auto">
+                                        <a href="#" class="fw-bold" target="_blank"><img src="{{board.img}}" alt="" class="product-img"></a>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="#" class="fw-bold" target="_blank">{{board.name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{board.socket}}</td>
+                            <td>{{board.chipset}}</td>
+                            <td>{{board.form_factor}}</td>
+                            <td>{{board.ram_slot}}</td>
+                            <td>{{board.memory_type}}</td>
+                            <td>{{board.storage_type}}</td>
+                            <td>{{board.pci}}</td>
+                            <td class="fw-bold text-end">{{board.price|floatformat:"0g"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script>
+// BRAND
+$('#boardbrandall').click(function() {
+    if ($('#boardbrandall').prop('checked')) {
+        $('input[name="boardbrand"][id!="boardbrandall"]').prop('checked', false);
+    }
+});
+$('input[name="boardbrand"][id!="boardbrandall"]').click(function() {
+    if ($('input[name="boardbrand"][id!="boardbrandall"]:checked').length) {
+        $('#boardbrandall').prop('checked', false);
+    }
+    else $('#boardbrandall').prop('checked', true);
+});
+//SOCKET
+$('#boardsocketall').click(function() {
+    if ($('#boardsocketall').prop('checked')) {
+        $('input[name="boardsocket"][id!="boardsocketall"]').prop('checked', false);
+    }
+});
+$('input[name="boardsocket"][id!="boardsocketall"]').click(function() {
+    if ($('input[name="boardsocket"][id!="boardsocketall"]:checked').length) {
+        $('#boardsocketall').prop('checked', false);
+    }
+    else $('#boardsocketall').prop('checked', true);
+});
+//CHIPSET
+$('#boardchipsetall').click(function() {
+    if ($('#boardchipsetall').prop('checked')) {
+        $('input[name="boardchipset"][id!="boardchipsetall"]').prop('checked', false);
+    }
+});
+$('input[name="boardchipset"][id!="boardchipsetall"]').click(function() {
+    if ($('input[name="boardchipset"][id!="boardchipsetall"]:checked').length) {
+        $('#boardchipsetall').prop('checked', false);
+    }
+    else $('#boardsocketall').prop('checked', true);
+});
+//FORM FACTOR
+$('#boardformfactorall').click(function() {
+    if ($('#boardformfactorall').prop('checked')) {
+        $('input[name="boardformfactor"][id!="boardformfactorall"]').prop('checked', false);
+    }
+});
+$('input[name="boardformfactor"][id!="boardformfactorall"]').click(function() {
+    if ($('input[name="boardformfactor"][id!="boardformfactorall"]:checked').length) {
+        $('#boardformfactorall').prop('checked', false);
+    }
+    else $('#boardformfactorall').prop('checked', true);
+});
+//MEMORY TYPE
+$('#boardmemorytypeall').click(function() {
+    if ($('#boardmemorytypeall').prop('checked')) {
+        $('input[name="boardmemorytype"][id!="boardmemorytypeall"]').prop('checked', false);
+    }
+});
+$('input[name="boardmemorytype"][id!="boardmemorytypeall"]').click(function() {
+    if ($('input[name="boardmemorytype"][id!="boardmemorytypeall"]:checked').length) {
+        $('#boardmemorytypeall').prop('checked', false);
+    }
+    else $('#boardmemorytypeall').prop('checked', true);
+});
+//Ram slot
+$('#boardramslotall').click(function() {
+    if ($('#boardmemorytypeall').prop('checked')) {
+        $('input[name="boardmemorytype"][id!="boardmemorytypeall"]').prop('checked', false);
+    }
+});
+$('input[name="boardramslot"][id!="boardramslotall"]').click(function() {
+    if ($('input[name="boardramslot"][id!="boardramslotall"]:checked').length) {
+        $('#boardramslotall').prop('checked', false);
+    }
+    else $('#boardramslotall').prop('checked', true);
+});
+
+</script>
+<!--price-->
+<script>
+    $( function() {
+        $( "#price-range" ).slider({
+            range: true,
+            min: 1000000,
+            max: 30000000,
+            step: 1000000,
+            values: [ 1000000, 30000000 ],
+            slide: function( event, ui ) {
+                $( "#boardprice" ).val( ui.values[ 0 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) + " - " + ui.values[ 1 ].toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+            }
+        });
+        $( "#boardprice" ).val( $( "#price-range" ).slider( "values", 0 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +
+            " - " + $( "#price-range" ).slider( "values", 1 ).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    } );
+</script>
+<!--board-ram-slot-->
+<script>
+    $( function() {
+        $( "#ram-range" ).slider({
+            range: true,
+            min: 1,
+            max: 16,
+            step: 1,
+            values: [ 1, 16 ],
+            slide: function( event, ui ) {
+                $( "#boardramslot" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+            }
+        });
+        $( "#boardramslot" ).val( $( "#ram-range" ).slider( "values", 0 ) +
+            " - " + $( "#ram-range" ).slider( "values", 1 ));
+    } );
+</script>
+<!--board-sata-ports-->
+<script>
+    $( function() {
+        $( "#sata-range" ).slider({
+            range: true,
+            min: 0,
+            max: 13,
+            step: 1,
+            values: [ 0, 13 ],
+            slide: function( event, ui ) {
+                $( "#boardsataports" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+            }
+        });
+        $( "#boardsataports" ).val( $( "#sata-range" ).slider( "values", 0 ) +
+            " - " + $( "#sata-range" ).slider( "values", 1 ));
+    } );
+</script>
+<!--board-m2-ports-->
+<script>
+    $( function() {
+        $( "#m2-range" ).slider({
+            range: true,
+            min: 0,
+            max: 6,
+            step: 1,
+            values: [ 0, 6 ],
+            slide: function( event, ui ) {
+                $( "#boardm2slots" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+            }
+        });
+        $( "#boardm2slots" ).val( $( "#m2-range" ).slider( "values", 0 ) +
+            " - " + $( "#m2-range" ).slider( "values", 1 ));
+    } );
+</script>
+<script>
+const board = document.getElementById('product-mainboard-search');
+board.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    console.log(1);
+    fetch('http://127.0.0.1:8000/demo/product_board_search/', {
+        method: "POST",
+        body: formData,
+        headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        mode: 'same-origin',
+    })
+    .then(re => re.json())
+    .then(data => {
+        JSON.stringify(data);
+        console.log(data);
+
+        $('#product_board_filter_slot').empty();
+        $('#board-search-result').text(data.mainboard_list.length+' Products Found');
+        for (let i = 1; i<=data.mainboard_list.length; i++) {
+            let newtablerow = $('<tr></tr>');
+            let newname = $('<td>' +
+                '                <div class="row">' +
+                '                    <div class="col-lg-auto">' +
+                '                        <a href="#" class="fw-bold" target="_blank">' +
+                '                           <img src="'+data.mainboard_list[i-1].img+'" alt="" class="product-img">' +
+                '                       </a>' +
+                '                   </div>' +
+                '                   <div class="col d-flex align-items-center">' +
+                '                       <a href="#" class="fw-bold" target="_blank">'+data.mainboard_list[i-1].name+'</a>' +
+                '                   </div>' +
+                '               </div>' +
+                '           </td>');
+            let newsocket = $('<td>'+data.mainboard_list[i-1].socket+'</td>');
+            let newchipset = $('<td>'+data.mainboard_list[i-1].chipset+'</td>');
+            let newformfactor = $('<td>'+data.mainboard_list[i-1].form_factor+'</td>');
+            let newramslot = $('<td>'+data.mainboard_list[i-1].ram_slot+'</td>');
+            let newmemorytype = $('<td>'+data.mainboard_list[i-1].memory_type+'</td>');
+            let newstoragetype = $('<td>'+data.mainboard_list[i-1].storage_type+'</td>');
+            let newpci = $('<td>'+data.mainboard_list[i-1].pci+'</td>');
+            let newprice = $('<td class="fw-bold text-end">'+priceFormatter.format(Number(data.mainboard_list[i-1].price)).substring(1)+'</td>');
+            newtablerow.append(newname, newsocket, newchipset, newformfactor, newramslot, newmemorytype, newstoragetype, newpci, newprice);
+            $('#product_board_filter_slot').append(newtablerow);
+        }
+    });
+})
+</script>
+{% endblock %}
